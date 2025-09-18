@@ -1,0 +1,246 @@
+---
+import Button from "../Button.astro";
+import Banner from "../HomePage/Banner/BannerOne.astro";
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+// Déterminer si on est sur une page de ville
+const currentPath = Astro.url.pathname;
+const isOnCityPage = currentPath !== '/' && currentPath !== '/villes/' && !currentPath.startsWith('/remerciement') && !currentPath.startsWith('/404');
+
+const headerData = siteData;
+
+
+
+// Fonction pour obtenir l'image correspondant au service
+function getServiceImage(service) {
+  return service.image || '/elagage/carré/elagage-sur-corde-one.png';
+}
+---
+
+
+<Banner siteData={siteData}/>
+<header class="relative isolate z-20">
+  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <!-- Logo -->
+    <div class="flex lg:flex-1">
+      <a href="/" class="-m-1.5 p-1.5">
+        <span class="sr-only">{headerData.business.name}</span>
+        <img src={headerData.business.company_logo} alt={headerData.business.name} class=" w-42" />
+      </a>
+    </div>
+    
+    <!-- Menu mobile button + SOS -->
+    <div class="flex items-center gap-x-3 lg:hidden">
+      <Button href={`tel:${headerData.business.contact.phone}`} variant="primary" size="md" icon="phone">
+        SOS
+      </Button>
+      <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+        <span class="sr-only">Ouvrir le menu principal</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-8">
+          <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <el-popover-group class="hidden lg:flex lg:gap-x-12">
+      <!-- Services Dropdown -->
+      <button popovertarget="desktop-menu-services" class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+        Services
+        <svg viewBox="0 0 20 20" fill="currentColor" class="size-5 flex-none text-gray-400">
+          <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+        </svg>
+      </button>
+
+      <el-popover id="desktop-menu-services" class="absolute top-16 w-full overflow-visible bg-white transition transition-discrete backdrop:bg-transparent open:block data-closed:-translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in hidden">
+        <div aria-hidden="true" class="absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5"></div>
+        <div class="relative bg-white">
+          <div class="mx-auto grid max-w-7xl grid-cols-4 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
+            {headerData.ui_sections.header.navigation.services.map((service) => (
+              <div class="group relative rounded-lg p-6 text-sm/6 hover:bg-primary/3">
+                <div class="flex size-11 items-center justify-center overflow-hidden">
+                  <img 
+                    src={getServiceImage(service)} 
+                    alt={service.title}
+                    class="size-11 object-cover rounded-lg"
+                  />
+                </div>
+                <a href={isOnCityPage ? `/${service.anchor}` : service.anchor} class="mt-6 block font-semibold text-gray-900">
+                  {service.title}
+                  <span class="absolute inset-0"></span>
+                </a>
+                <p class="mt-1 text-gray-600">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </el-popover>
+
+      <!-- Navigation Links -->
+      {headerData.ui_sections.header.navigation.links.map((link) => (
+        <a href={isOnCityPage ? `/${link.url}` : link.url} class="text-sm/6 font-semibold text-gray-900">{link.text}</a>
+      ))}
+    </el-popover-group>
+    
+    <!-- Phone CTA -->
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+     
+     <Button  icon="alert" modal>Devis Gratuit</Button>
+
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <el-dialog>
+    <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+      <div tabindex="0" class="fixed inset-0 focus:outline-none">
+        <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div class="flex items-center justify-between">
+            <a href="/" class="-m-1.5 p-1.5">
+              <span class="sr-only">{headerData.business.name}</span>
+              <img src={headerData.business.company_logo} alt={headerData.business.name} class="h-8 w-auto" />
+            </a>
+            <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+              <span class="sr-only">Fermer le menu</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
+                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          
+          <div class="mt-6 flow-root">
+            <div class="-my-6 divide-y divide-gray-500/10">
+              <div class="space-y-2 py-6">
+                <div class="-mx-3">
+                  <button type="button" command="--toggle" commandfor="mobile-services" class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    Services
+                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5 flex-none in-aria-expanded:rotate-180">
+                      <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  </button>
+                  
+                  <el-disclosure id="mobile-services" hidden class="mt-2 block space-y-2">
+                    {headerData.ui_sections.header.navigation.services.map((service) => (
+                      <a href={isOnCityPage ? `/${service.anchor}` : service.anchor} class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">
+                        {service.title}
+                      </a>
+                    ))}
+                  </el-disclosure>
+                </div>
+                
+                {headerData.ui_sections.header.navigation.links.map((link) => (
+                  <a href={isOnCityPage ? `/${link.url}` : link.url} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    {link.text}
+                  </a>
+                ))}
+              </div>
+              
+              <div class="py-6 space-y-4">
+                  
+                  <Button icon="phone" href=`tel:${headerData.business.contact.phone_formatted}`>{headerData.business.contact.phone_formatted}</Button>
+                  <Button icon="devis" variant="outline" modal>Je demande un devis</Button>
+              </div>
+            </div>
+          </div>
+        </el-dialog-panel>
+      </div>
+    </dialog>
+  </el-dialog>
+</header>
+
+<style>
+/* Prevent FOUC (Flash of Unstyled Content) for web components */
+el-popover:not(:defined) {
+  display: none !important;
+}
+
+el-dialog:not(:defined) {
+  display: none !important;
+}
+
+el-disclosure:not(:defined) {
+  display: none !important;
+}
+
+/* Ensure proper initial state before hydration */
+el-popover {
+  display: none;
+}
+
+el-popover:popover-open,
+el-popover[open] {
+  display: block;
+}
+</style>
+
+<script>
+// Industrial auto-close navigation menus using TailwindUI Elements native APIs
+document.addEventListener('DOMContentLoaded', function() {
+  initNavigationAutoClose();
+});
+
+// Handle Astro page transitions
+document.addEventListener('astro:page-load', function() {
+  initNavigationAutoClose();
+});
+
+function initNavigationAutoClose() {
+  // Mark all navigation links for auto-close behavior
+  document.querySelectorAll('el-popover a, el-dialog a, el-disclosure a, el-popover button[modal], el-dialog button[modal]').forEach(link => {
+    link.dataset.autoCloseMenu = 'true';
+  });
+
+  // Remove existing listeners to prevent duplicates
+  document.removeEventListener('click', handleNavigationClick);
+  
+  // Single event listener with delegation for performance
+  document.addEventListener('click', handleNavigationClick);
+}
+
+function handleNavigationClick(event) {
+  const link = event.target.closest('[data-auto-close-menu="true"]');
+  if (!link) return;
+
+  const menuComponent = link.closest('el-popover, el-dialog, el-disclosure');
+  if (!menuComponent) return;
+
+  // Small delay to allow navigation to start
+  setTimeout(() => {
+    closeMenuComponent(menuComponent);
+  }, 50);
+}
+
+function closeMenuComponent(component) {
+  const tagName = component.tagName.toLowerCase();
+  
+  try {
+    switch (tagName) {
+      case 'el-popover':
+        if (component.hasAttribute('open') && typeof component.hidePopover === 'function') {
+          component.hidePopover();
+        }
+        break;
+      case 'el-dialog':
+        if (component.hasAttribute('open')) {
+          // Try different methods based on TailwindUI Elements API
+          if (typeof component.hide === 'function') {
+            component.hide();
+          } else if (typeof component.close === 'function') {
+            component.close();
+          }
+        }
+        break;
+      case 'el-disclosure':
+        if (!component.hasAttribute('hidden') && typeof component.hide === 'function') {
+          component.hide();
+        }
+        break;
+    }
+  } catch (error) {
+    console.debug('Menu auto-close fallback for:', tagName, error);
+    // Fallback: trigger close button if available
+    const closeBtn = component.querySelector('[command="close"], [commandfor]');
+    if (closeBtn) closeBtn.click();
+  }
+}
+</script>

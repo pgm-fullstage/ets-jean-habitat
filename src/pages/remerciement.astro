@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+// Import content from JSON
+const content = await import('../../ets-jean-habitat-content.json');
+const { business, ui_sections } = content;
+const { thank_you_page } = ui_sections;
+---
+
+<Layout title="Remerciement - Ets Jean Habitat" noIndex={true} showFooter={false} showHeader={false} showStickyInfos={false}>
+	<main class="min-h-screen bg-white flex items-center justify-center px-4">
+		<div class="max-w-2xl w-full text-center">
+			<!-- Logo -->
+			<div class="mb-12">
+				<img 
+					src={business.company_logo} 
+					alt={business.name}
+					class="h-20 w-auto mx-auto"
+				/>
+			</div>
+
+			<!-- Content -->
+			<h1 class="text-5xl font-bold text-primary mb-8">{thank_you_page.title}</h1>
+			
+			<div class="space-y-6 mb-12 text-lg text-text">
+				{thank_you_page.messages.map((message) => (
+					<p class="leading-relaxed">{message}</p>
+				))}
+			</div>
+
+			<!-- Urgent Contact -->
+			<div class="mb-8">
+				<p class="text-xl font-semibold text-title mb-2">{thank_you_page.urgent_text}</p>
+				<p class="text-text mb-8">{thank_you_page.urgent_description}</p>
+			</div>
+
+			<!-- CTA Buttons -->
+			<div class="space-y-4">
+				<Button 
+					variant="primary" 
+					size="lg"
+					href={`tel:${business.contact.phone}`}
+					icon="phone"
+					class="w-full sm:w-auto"
+				>
+					{business.contact.phone_formatted}
+				</Button>
+				
+				<div class="mb-10">
+					<a 
+						href="/" 
+						class="text-text hover:text-title transition-colors underline font-medium"
+					>
+						RETOUR À L'ACCUEIL
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>

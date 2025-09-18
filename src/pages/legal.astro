@@ -1,0 +1,239 @@
+---
+// src/pages/mentions-legales.astro
+import Layout from '../layouts/Layout.astro';
+
+import Button from "../components/Button.astro"
+const CONFIG_URL = import.meta.env.PUBLIC_CONFIG_URL + '/demo-site';
+
+let siteData;
+try {
+  const response = await fetch(CONFIG_URL);
+  if (response.ok) {
+    siteData = await response.json();
+  }
+} catch (error) {
+  // Fallback si Workers KV inaccessible
+  siteData = {
+    business: {
+      name: "Entreprise",
+      owner_name: "Propriétaire",
+      siret: "00000000000000",
+      domain: "site.fr",
+      contact: { email: "contact@site.fr" }
+    }
+  };
+}
+
+const business = siteData.business;
+---
+
+<Layout title="Mentions Légales" noIndex={true} showFooter={false} showHeader={false} showStickyInfos={false}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-lg shadow-sm border border-bordered p-8 lg:p-12">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-title mb-4">
+          Mentions Légales, Confidentialité & CGU
+        </h1>
+        <div class="h-1 w-24 bg-primary mx-auto"></div>
+      </div>
+
+      <!-- Mentions Légales -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-title mb-6 border-b border-bordered pb-2">
+          Mentions légales
+        </h2>
+        
+        <div class="space-y-3 text-text leading-relaxed">
+          <p><strong>Dénomination sociale :</strong> {business.name}</p>
+          <p><strong>SIRET :</strong> {business.siret}</p>
+          <p><strong>Site web :</strong> {business.domain}</p>
+          <p><strong>Adresse email :</strong> {business.contact.email}</p>
+          <p><strong>Propriétaire :</strong> {business.owner_name}</p>
+          <p><strong>Directeur de publication :</strong> {business.owner_name}</p>
+        </div>
+
+        <div class="mt-6 p-4 bg-fill rounded-lg">
+          <p class="text-text">
+            <strong>Hébergement :</strong><br>
+            Le site {business.domain} est hébergé par <strong>Cloudflare</strong>.<br>
+            Adresse postale : 101 Townsend St, San Francisco, CA 94107, United States.
+          </p>
+        </div>
+      </section>
+
+      <!-- Politique de Confidentialité -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-title mb-6 border-b border-bordered pb-2">
+          Politique de Confidentialité
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">1. Collecte des données personnelles</h3>
+            <p class="text-text leading-relaxed">
+              Lors de votre navigation sur notre site, nous sommes amenés à collecter les données suivantes : 
+              Nom, Prénom, Email, Téléphone, Adresse, Code postal, Ville, et Message.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">2. Utilisation des données</h3>
+            <p class="text-text leading-relaxed">
+              Les données collectées sont utilisées dans le but de répondre à vos demandes d'information, de devis ou de contact. 
+              Elles sont conservées de manière strictement confidentielle et ne sont en aucun cas communiquées à des tiers.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">3. Cookies</h3>
+            <p class="text-text leading-relaxed mb-4">
+              Dans le cadre de notre engagement envers la transparence et le respect de la vie privée de nos utilisateurs, 
+              cet article vise à expliquer clairement comment et pourquoi nous utilisons des cookies sur notre site Web.
+            </p>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+              <h4 class="font-medium text-blue-900 mb-2">Qu'est-ce qu'un Cookie ?</h4>
+              <p class="text-blue-800 text-sm">
+                Un cookie est un petit fichier texte envoyé à votre navigateur par un site Web que vous visitez. 
+                Il aide le site à se souvenir des informations sur votre visite.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-title mb-2">Pourquoi utilisons-nous des cookies ?</h4>
+                <ul class="list-disc list-inside space-y-2 text-text ml-4">
+                  <li><strong>Améliorer l'Expérience Utilisateur :</strong> Personnalisation du contenu et des préférences</li>
+                  <li><strong>Analyse et Performance :</strong> Comprendre les interactions avec notre site</li>
+                  <li><strong>Publicité :</strong> Google Ads et Meta Ads pour des annonces pertinentes</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-title mb-2">Utilisation des Cookies pour Google Ads :</h4>
+                <ul class="list-disc list-inside space-y-1 text-text ml-4">
+                  <li>Personnalisation des annonces basées sur vos visites</li>
+                  <li>Limitation de la fréquence des annonces</li>
+                  <li>Suivi des conversions pour mesurer l'efficacité</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-title mb-2">Votre contrôle des cookies :</h4>
+                <p class="text-text leading-relaxed">
+                  Vous pouvez gérer vos préférences via les paramètres de votre navigateur ou 
+                  les paramètres de publicité Google pour personnaliser ou désactiver les annonces.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-fill border rounded-lg p-4 mt-4">
+              <h4 class="font-medium text-title mb-2">Google Analytics</h4>
+              <p class="text-sm text-gray-600 italic leading-relaxed">
+                "Ce site utilise Google Analytics, un service d'analyse de site internet fourni par Google Inc. 
+                Google Analytics utilise des cookies pour analyser l'utilisation du site par ses utilisateurs. 
+                Les données générées seront transmises et stockées par Google sur des serveurs situés aux États-Unis. 
+                Vous pouvez désactiver l'utilisation de cookies en sélectionnant les paramètres appropriés de votre navigateur."
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">RGPD</h3>
+            <div class="space-y-3 text-text">
+              <p>
+                L'adresse email, le numéro de téléphone, le nom et le prénom peuvent être demandés à des fins commerciales et informatives.
+              </p>
+              <p>
+                Nous stockons nos emails via Google Workspace, reconnue pour son niveau de sécurité hautement qualifié.
+              </p>
+              <p>
+                <strong>Service d'envoi d'emails :</strong> Les formulaires de contact sont traités via Resend, 
+                service d'envoi d'emails dont les serveurs sont situés en Irlande (Union Européenne), 
+                garantissant ainsi le respect des réglementations RGPD.
+              </p>
+              <p>
+                <strong>Le DPO de notre entreprise est {business.owner_name}.</strong>
+              </p>
+              <p>
+                Vous pouvez demander la suppression de vos données en envoyant un email à : 
+                <a href={`mailto:${business.contact.email}`} class="text-primary hover:underline font-medium">
+                  {business.contact.email}
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">5. Transparency & Consent Framework</h3>
+            <div class="space-y-3 text-text">
+              <p>
+                <strong>{business.name}</strong> participe et est conforme à l'ensemble des Spécifications et Politiques du Transparency & Consent Framework de l'IAB Europe. 
+                Il utilise la Consent Management Platform n°92.
+              </p>
+              <p>
+                Vous pouvez modifier vos choix à tout moment en <a href='javascript:Sddan.cmp.displayUI()' class="text-primary hover:underline font-medium">cliquant ici</a>.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">4. Droits de l'utilisateur</h3>
+            <p class="text-text leading-relaxed">
+              Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification, 
+              de suppression et d'opposition à vos données. Pour exercer ces droits, contactez-nous à l'adresse 
+              <a href={`mailto:${business.contact.email}`} class="text-primary hover:underline font-medium">
+                {business.contact.email}
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conditions Générales d'Utilisation -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-title mb-6 border-b border-bordered pb-2">
+          Conditions Générales d'Utilisation
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">1. Acceptation des conditions</h3>
+            <p class="text-text leading-relaxed">
+              En accédant et en utilisant le site {business.domain}, vous acceptez sans réserve les présentes conditions générales d'utilisation.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">2. Utilisation du site</h3>
+            <p class="text-text leading-relaxed">
+              L'utilisateur s'engage à utiliser le site de manière conforme à toutes les réglementations en vigueur.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">3. Propriété intellectuelle</h3>
+            <p class="text-text leading-relaxed">
+              Les textes et les informations sont protégés par le droit d'auteur. Ils sont la propriété exclusive de {business.name}. 
+              Toute copie, reproduction ou adaptation est interdite sans autorisation écrite préalable.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium text-title mb-3">4. Limitation de responsabilité</h3>
+            <p class="text-text leading-relaxed">
+              {business.name} ne peut être tenu responsable des dommages directs ou indirects causés au matériel de l'utilisateur 
+              lors de l'accès au site, ni des conséquences pouvant résulter de l'utilisation des informations présentes sur le site.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Retour -->
+      <div class="text-center pt-8 border-t border-bordered">
+        <Button href="/" >Revenir à l'accueil</Button>
+      </div>
+    </div>
+  </div>
+</Layout>

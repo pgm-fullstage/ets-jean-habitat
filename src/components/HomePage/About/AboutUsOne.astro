@@ -1,0 +1,64 @@
+---
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for AboutUsOne component');
+}
+
+const { business, ui_sections, cities } = siteData;
+const { about_us, partner_logos } = ui_sections;
+
+// Get current city for dynamic content
+const currentCity = cities?.default || 'louannec';
+const cityData = cities?.available?.[currentCity] || {
+  hero_title: "Buscail Habitat Couverture à Louannec"
+};
+---
+
+<div class="overflow-hidden bg-white py-24 sm:py-32 animate-on-scroll fade-in-up" data-delay="200" >
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <div class="max-w-4xl">
+      <p class="text-base/7 font-semibold text-primary">{about_us.section_title} - {cityData.hero_title}</p>
+      <h3 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-title sm:text-5xl">{about_us.main_title}</h3>
+      <p class="mt-6 text-xl/8 text-balance text-text">{about_us.main_description}</p>
+    </div>
+    <section class="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
+      <div class="lg:pr-8">
+        <h2 class="text-2xl font-semibold tracking-tight text-pretty text-title">{about_us.expertise.title}</h2>
+        {about_us.expertise.paragraphs.map((paragraph, index) => (
+          <p class={index === 0 ? "mt-6 text-base/7 text-text" : "mt-8 text-base/7 text-text"}>{paragraph}</p>
+        ))}
+      </div>
+      <div class="pt-16 lg:row-span-2 lg:-mr-16 xl:mr-auto">
+        <div class="mx-4 grid grid-cols-2 gap-4 sm:mx-0 sm:grid-cols-4 lg:mx-0 lg:grid-cols-2 xl:gap-8">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+            <img src={about_us.images[0]} alt="Travaux de toiture" class="block size-full object-cover" />
+          </div>
+          <div class="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
+            <img src={about_us.images[1]} alt="Charpente" class="block size-full object-cover" />
+          </div>
+          <div class="aspect-square overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+            <img src={about_us.images[2]} alt="Façade" class="block size-full object-cover" />
+          </div>
+          <div class="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
+            <img src={about_us.images[3]} alt="Nettoyage" class="block size-full object-cover" />
+          </div>
+        </div>
+      </div>
+      <div class="max-lg:mt-16 lg:col-span-1">
+        <p class="text-base/7 font-semibold text-text">{about_us.partners_title}</p>
+        <hr class="mt-6 border-t border-border" />
+        <div class="mt-6 flex flex-wrap gap-8 justify-center md:justify-start items-center">
+          {partner_logos.map((logo) => (
+                     <img 
+                         src={logo.img_url} 
+                        alt={logo.alt} 
+                        class="w-16 h-auto sm:w-20 md:w-24" 
+                      />
+                  ))}
+
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

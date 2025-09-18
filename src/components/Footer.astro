@@ -1,0 +1,133 @@
+---
+import Button from './Button.astro';
+
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for Footer component');
+}
+
+const { business, ui_sections, cities } = siteData;
+const { footer } = ui_sections;
+const availableCities = cities?.available || {};
+
+// Année dynamique
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-white">
+  <!-- Google Maps iframe -->
+  <div class="w-full">
+    <iframe 
+      src={business.google.maps_embed}
+      width="100%" 
+      height="270" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      title={`Localisation de ${business.name}`}>
+    </iframe>
+  </div>
+  
+  <div class="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      
+      <!-- Section Entreprise -->
+      <div class="space-y-8">
+        <img src={business.company_logo} alt={business.name} class="w-60" />
+        <p class="text-sm/6 text-balance text-text">{footer.description}</p>
+        
+        <!-- Bouton Avis Google au lieu des réseaux sociaux -->
+        <div class="flex gap-x-6">
+          <Button href={business.google.review_url} target="_blank" variant="primary" size="lg" icon="google">
+            Je donne mon avis
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Sections Navigation, Services, Legal -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 xl:col-span-2 xl:mt-0">
+          
+        <!-- Navigation -->
+        <div>
+          <h3 class="text-sm/6 font-semibold text-title">{footer.sections.navigation.title}</h3>
+          <ul role="list" class="mt-6 space-y-4">
+            {footer.sections.navigation.links.map((link) => (
+              <li>
+                <a href={link.url} class="text-sm/6 text-text hover:text-title">{link.text}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Services -->
+        <div>
+          <h3 class="text-sm/6 font-semibold text-title">{footer.sections.services.title}</h3>
+          <ul role="list" class="mt-6 space-y-4">
+            {footer.sections.services.links.map((link) => (
+              <li>
+                <a href={link.url} class="text-sm/6 text-text hover:text-title">{link.text}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Legal avec Carte -->
+        <div>
+            <h3 class="text-sm/6 font-semibold text-title">{footer.sections.legal.title}</h3>
+            <ul role="list" class="mt-6 space-y-4">
+              {footer.sections.legal.links.map((link) => (
+                <li>
+                  <a href={link.url} class="text-sm/6 text-text hover:text-title">{link.text}</a>
+                </li>
+              ))}
+            </ul>
+            
+            <!-- Carte des zones -->
+            <div class="max-w-80 mt-8">
+              <img 
+                src={business.zones_map}
+                alt={`Carte des zones d'intervention de ${business.name} en Bretagne`}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        
+      
+      </div>
+    </div>
+      <!-- Zones d'intervention -->
+        <div class="mt-16 text-center">
+          <h3 class="text-sm/6 font-semibold text-title mb-8">Zones d'intervention</h3>
+          
+          <!-- Liste des villes -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {Object.entries(availableCities).map(([slug, cityData]) => (
+              <a href={`/villes/${slug}`} class="text-sm/6 text-text hover:text-title transition-colors">
+                {cityData.name}
+              </a>
+            ))}
+          </div>
+          <div class="mt-4">
+            <a href="/villes" class="text-sm/6 text-primary hover:text-primary/80 font-medium">
+              Voir toutes nos zones d'intervention
+            </a>
+          </div>
+        </div>
+    <!-- Copyright avec année dynamique -->
+    <div class="mt-16 border-t border-title/10 pt-8 sm:mt-20 lg:mt-24">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-sm/6 text-text">
+          &copy; {currentYear} {business.name}. Tous droits réservés.
+        </p>
+        <div class="flex gap-4 text-sm">
+          <a href="/legal" class="text-text hover:text-title transition-colors">
+            Mentions légales
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

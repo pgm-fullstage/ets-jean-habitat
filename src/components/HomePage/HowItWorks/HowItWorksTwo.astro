@@ -1,0 +1,113 @@
+---
+import Button from "../../Button.astro";
+
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for HowItWorksTwo component');
+}
+
+const { business, ui_sections, cities } = siteData;
+const { theme, how_it_works } = ui_sections;
+
+// Get current city for dynamic content
+const currentCity = cities?.default || 'louannec';
+const cityData = cities?.available?.[currentCity] || {
+  hero_title: "Buscail Habitat Couverture à Louannec"
+};
+---
+
+<div class="relative py-24 sm:py-32">
+  <!-- En-tête de section -->
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 mb-20">
+    <div class="text-center">
+      <h2 class="font-semibold text-base uppercase tracking-widest mb-3 text-primary animate-on-scroll fade-in-up">
+        {how_it_works.section.title} - {cityData.hero_title}
+      </h2>
+      <h3 class="text-4xl font-semibold tracking-tight text-title sm:text-5xl lg:text-6xl animate-on-scroll fade-in-up" data-delay="100">
+        {how_it_works.section.main_title} 
+      </h3>
+      <p class="mt-6 mb-10 text-lg leading-8 max-w-3xl text-text mx-auto animate-on-scroll fade-in-up" data-delay="200">
+        De votre premier contact jusqu'à la livraison finale, découvrez comment {business.name} vous accompagne dans votre projet.
+      </p>
+          <div class="animate-on-scroll zoom-in" data-delay="300">
+            <Button href=`tel:${business.contact.phone}` variant="primary" size="lg" icon="phone" modal >{business.contact.phone_formatted}</Button>
+          </div>
+    </div>
+  </div>
+
+  <!-- Container wrapper avec padding pour l'effet -->
+  <div class="mx-auto max-w-4xl px-6 lg:px-8 pt-32 pb-32">
+    
+    {how_it_works.steps.map((step, index) => (
+      <div 
+        class="sticky mb-5 last:mb-0 rounded-3xl  shadow-xl bg-white overflow-hidden relative"
+        style={`top: ${30 + (index * 20)}px;`}
+      >
+        <!-- Image de fond avec overlay -->
+        <div class="absolute inset-0 -z-10">
+          <img 
+            src={step.image} 
+            alt="" 
+            class="h-full w-full object-cover"
+          />
+                    <div class="absolute inset-0 bg-black/60    "></div>
+
+        </div>
+
+        <!-- Contenu de la carte -->
+        <div class="relative z-10 p-8 lg:p-12">
+          
+          <!-- En-tête avec numéro -->
+          <div class="flex items-start justify-between mb-6">
+            <div>
+             
+              <h3 class="text-2xl lg:text-3xl font-bold text-white">
+                {step.title}
+              </h3>
+            </div>
+            
+            <!-- Badge dynamique -->
+            {step.badge && (
+              <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
+                ✓ {step.badge}
+              </span>
+            )}
+          </div>
+          
+          <!-- Description -->
+          <p class=" leading-relaxed mb-8 text-white">
+            {step.description}
+          </p>
+          
+          <!-- CTA pour la première étape -->
+          {step.cta && (
+            <div class="flex items-center justify-start">
+              <Button
+                variant="primary"
+                size="lg"
+                icon="devis"
+                modal
+                class="group hover:scale-105 transition-transform duration-300"
+              >
+                {step.cta}
+              </Button>
+            </div>
+          )}
+          
+        </div>
+        
+        <!-- Numéro décoratif en arrière-plan -->
+        <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-primary/5 border-2 border-bordered flex items-center justify-center">
+          <span class="text-2xl font-bold text-white">
+            {step.number}
+          </span>
+        </div>
+        
+      </div>
+    ))}
+    
+  </div>
+
+</div>
+

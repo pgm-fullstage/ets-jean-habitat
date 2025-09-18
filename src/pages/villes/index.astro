@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+
+// Fetch configuration depuis Workers KV (même logique que Layout)
+const CONFIG_URL = import.meta.env.PUBLIC_CONFIG_URL || '/ets-jean-habitat-content.json';
+
+async function getSiteConfig() {
+  try {
+    const response = await fetch(CONFIG_URL, {
+      headers: {
+        'Cache-Control': 'max-age=300'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const contentType = response.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      throw new Error('Invalid response format');
+    }
+    
+    return await response.json();
+  } catch (error) {
+    // Fallback vers config par défaut
+    return {
+      business: { name: "Site en Maintenance" },
+      ui_sections: { theme: { primary: "#3B82F6" } },
+      cities: { available: {} }
+    };
+  }
+}
+
+const siteData = await getSiteConfig();
+const cities = siteData.cities?.available || {};
+---
+
+<Layout 
+  siteData={siteData}
+  title="Nos zones d'intervention - Buscail Habitat"
+  description="Découvrez toutes les villes où Buscail Habitat intervient pour vos travaux de couverture, isolation et rénovation."
+>
+  <div class="bg-white">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          Nos zones d'intervention
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-gray-600">
+          {siteData.business.name} intervient dans toutes ces villes des Côtes-d'Armor pour vos travaux de couverture, isolation et rénovation.
+        </p>
+      </div>
+      
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+        {Object.entries(cities).map(([slug, cityData]) => (
+          <div class="flex gap-x-4 rounded-xl bg-white p-6 ring-1 ring-inset ring-gray-200 hover:bg-gray-50 transition-colors">
+            <div class="text-base leading-7">
+              <h3 class="font-semibold text-gray-900">{cityData.name}</h3>
+              <p class="mt-2 text-gray-600">{cityData.hero_description}</p>
+              <div class="mt-4">
+                <Button href={`/villes/${slug}`} variant="primary" size="sm">
+                  Voir la page {cityData.name}
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="mt-16 text-center">
+        <p class="text-base leading-7 text-gray-600">
+          Votre ville n'est pas dans la liste ? 
+        </p>
+        <div class="mt-4">
+          <Button modal variant="secondary" size="lg">
+            Contactez-nous pour un devis
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

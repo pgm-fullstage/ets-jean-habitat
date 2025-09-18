@@ -1,0 +1,96 @@
+/* Animation System - Scalable & Subtle */
+
+/* Base Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0s;
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+}
+
+/* Fade In Up - Pour les textes */
+.fade-in-up {
+  transform: translateY(30px);
+}
+
+.fade-in-up.animated {
+  transform: translateY(0);
+}
+
+/* Fade In Bottom - Pour les éléments du bas */
+.fade-in-bottom {
+  transform: translateY(-30px);
+}
+
+.fade-in-bottom.animated {
+  transform: translateY(0);
+}
+
+/* Zoom In - Pour les images */
+.zoom-in {
+  transform: scale(0.95);
+}
+
+.zoom-in.animated {
+  transform: scale(1);
+}
+
+/* Fade In Left - Pour les éléments latéraux */
+.fade-in-left {
+  transform: translateX(-30px);
+}
+
+.fade-in-left.animated {
+  transform: translateX(0);
+}
+
+/* Fade In Right - Pour les éléments latéraux */
+.fade-in-right {
+  transform: translateX(30px);
+}
+
+.fade-in-right.animated {
+  transform: translateX(0);
+}
+
+/* Stagger Delays - Pour créer des effets en cascade */
+.animate-on-scroll[data-delay="100"] {
+  transition-delay: 0.1s;
+}
+
+.animate-on-scroll[data-delay="200"] {
+  transition-delay: 0.2s;
+}
+
+.animate-on-scroll[data-delay="300"] {
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll[data-delay="400"] {
+  transition-delay: 0.4s;
+}
+
+.animate-on-scroll[data-delay="500"] {
+  transition-delay: 0.5s;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Performance Optimizations */
+.animate-on-scroll {
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.animated {
+  will-change: auto;
+}

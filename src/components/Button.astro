@@ -1,0 +1,169 @@
+---
+import PopupContact from './PopupContact.astro';
+import InfosSticky from './InfosSticky.astro';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'white';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  radius?: 'sm' | 'lg' | 'full';
+  href?: string;
+  target?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  icon?: 'phone' | 'email' | 'user' | 'home' | 'info' | 'chat' | 'location' | 'calendar' | 'alert' |'google' | 'devis' | 'arrow_right';
+  iconPosition?: 'left' | 'right';
+  modal?: boolean;
+  modalType?: 'center' | 'bottom-right';
+  siteData?: any;
+}
+
+const { 
+  variant = 'primary',
+  size = 'md', 
+  radius = 'lg',
+  href,
+  target,
+  type = 'button',
+  class: additionalClasses = '',
+  icon,
+  iconPosition = 'left',
+  modal = false,
+  modalType ='center',
+  siteData
+} = Astro.props;
+
+// Base classes
+const baseClasses = 'cursor-pointer inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed';
+
+const variantClasses = {
+  primary: 'bg-primary text-white hover:bg-primary/80 ',
+  secondary: 'text-title hover:text-primary ',
+  outline: 'border border-primary text-primary hover:bg-primary hover:text-white focus:ring-blue-500',
+  white: 'bg-white text-primary hover:bg-white/90 border border-white/20 shadow-sm'
+};
+
+const sizeClasses = {
+  xs: 'px-0 py-0 text-sm',
+  sm: 'px-3 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg'
+};
+
+const radiusClasses = {
+  sm: 'rounded-sm',
+  lg: 'rounded-lg', 
+  full: 'rounded-full'
+};
+
+const iconClasses = {
+  xs: 'w-4 h-4',
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6'
+};
+
+const classes = [
+  baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  radiusClasses[radius],
+
+  additionalClasses
+].join(' ');
+
+const Element = href ? 'a' : 'button';
+
+// Générer un ID unique pour éviter les conflits
+const uniqueId = `dialog-${Math.random().toString(36).substr(2, 9)}`;
+
+// Fonction pour obtenir l'icône SVG appropriée
+const getIconSvg = (iconName) => {
+  const icons = {
+    phone: `<path class="ring" fill-rule="evenodd" clip-rule="evenodd" d="M11.5 3.5C11.5 2.94772 11.9477 2.5 12.5 2.5C17.4706 2.5 21.5 6.52944 21.5 11.5C21.5 12.0523 21.0523 12.5 20.5 12.5C19.9477 12.5 19.5 12.0523 19.5 11.5C19.5 7.63401 16.366 4.5 12.5 4.5C11.9477 4.5 11.5 4.05228 11.5 3.5ZM12 7C12 6.44772 12.4477 6 13 6C15.7614 6 18 8.23858 18 11C18 11.5523 17.5523 12 17 12C16.4477 12 16 11.5523 16 11C16 9.34315 14.6569 8 13 8C12.4477 8 12 7.55228 12 7Z" fill="currentColor"></path><path d="M9.09121 5.05609L8.83795 4.48626C8.49683 3.71873 8.32626 3.33496 8.04556 3.06369C7.86027 2.88463 7.64223 2.74293 7.40335 2.64634C7.04146 2.5 6.6215 2.5 5.78157 2.5C4.53091 2.5 3.90558 2.5 3.41836 2.80363C3.11954 2.98986 2.83374 3.30601 2.67852 3.62206C2.42545 4.13735 2.48286 4.70507 2.59768 5.84052C3.55041 15.2623 8.73768 20.4496 18.1595 21.4023C19.2949 21.5171 19.8626 21.5745 20.3779 21.3215C20.694 21.1663 21.0101 20.8805 21.1964 20.5816C21.5 20.0944 21.5 19.4691 21.5 18.2184C21.5 17.3785 21.5 16.9585 21.3537 16.5966C21.2571 16.3578 21.1154 16.1397 20.9363 15.9544C20.665 15.6737 20.2813 15.5032 19.5137 15.162L18.9439 14.9088C18.2714 14.6099 17.9351 14.4604 17.5978 14.432C17.239 14.4018 16.8786 14.4687 16.5546 14.6257C16.2499 14.7733 15.9897 15.0335 15.4693 15.5539C14.9573 16.0659 14.7013 16.3219 14.3679 16.4727C14.0435 16.6194 13.5876 16.6818 13.2357 16.6276C12.874 16.5719 12.6082 16.4219 12.0767 16.1221C10.1922 15.0593 8.94074 13.8078 7.87787 11.9233C7.57805 11.3918 7.42815 11.126 7.37245 10.7643C7.31825 10.4124 7.38061 9.9565 7.52731 9.63208C7.67807 9.29869 7.93406 9.04269 8.44605 8.5307C8.96647 8.01029 9.22668 7.75008 9.37427 7.44543C9.53126 7.12138 9.59817 6.76105 9.56797 6.40224C9.53957 6.06491 9.39012 5.72863 9.09121 5.05609Z" fill="currentColor"></path>`,
+    devis: ` <path d="M12.5 22L10.7273 22C7.46607 22 5.83546 22 4.70307 21.2022C4.37862 20.9736 4.09058 20.7025 3.8477 20.3971C3 19.3313 3 17.7966 3 14.7273L3 12.1818C3 9.21865 3 7.73706 3.46894 6.55375C4.22282 4.65142 5.81714 3.15088 7.83836 2.44135C9.09563 2 10.6698 2 13.8182 2C15.6173 2 16.5168 2 17.2352 2.2522C18.3902 2.65765 19.3013 3.5151 19.732 4.60214C20 5.27832 20 6.12494 20 7.81818L20 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M3 12C3 10.159 4.49238 8.66667 6.33333 8.66667C6.99912 8.66667 7.78404 8.78333 8.43137 8.60988C9.00652 8.45576 9.45576 8.00652 9.60988 7.43136C9.78333 6.78404 9.66667 5.99912 9.66667 5.33333C9.66667 3.49238 11.1591 2 13 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M21 20.4923C20.5216 21.3957 19.6512 22 18.6568 22C17.147 22 15.9231 20.6071 15.9231 18.8889V17.1111C15.9231 15.3929 17.147 14 18.6568 14C19.6512 14 20.5216 14.6043 21 15.5077M15 18H18.9231" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />`,
+    arrow_right:`<path fill-rule="evenodd" clip-rule="evenodd" d="M8 5C7.44772 5 7 5.44772 7 6C7 6.55228 7.44772 7 8 7H15.5858L5.29289 17.2929C4.90237 17.6834 4.90237 18.3166 5.29289 18.7071C5.68342 19.0976 6.31658 19.0976 6.70711 18.7071L17 8.41421V16C17 16.5523 17.4477 17 18 17C18.5523 17 19 16.5523 19 16V6C19 5.44772 18.5523 5 18 5H8Z" fill="currentColor"></path>`,
+    email: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />`,
+    user: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />`,
+    home: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m0 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />`,
+    info: ` <path d="M21.5 12.6863V11.3137C21.5 9.67871 21.5 8.8612 21.1955 8.12612C20.891 7.39104 20.313 6.81297 19.1569 5.65685L18.3431 4.84315C17.187 3.68702 16.609 3.10896 15.8739 2.80448C15.1388 2.5 14.3213 2.5 12.6863 2.5H11.3137C9.67871 2.5 8.8612 2.5 8.12612 2.80448C7.39104 3.10896 6.81297 3.68702 5.65685 4.84315L4.84315 5.65685C3.68702 6.81298 3.10896 7.39104 2.80448 8.12612C2.5 8.8612 2.5 9.67871 2.5 11.3137V12.6863C2.5 14.3213 2.5 15.1388 2.80448 15.8739C3.10896 16.609 3.68702 17.187 4.84315 18.3431L5.65685 19.1569C6.81297 20.313 7.39104 20.891 8.12612 21.1955C8.8612 21.5 9.67871 21.5 11.3137 21.5H12.6863C14.3213 21.5 15.1388 21.5 15.8739 21.1955C16.609 20.891 17.187 20.313 18.3431 19.1569L19.1569 18.3431C20.313 17.187 20.891 16.609 21.1955 15.8739C21.5 15.1388 21.5 14.3213 21.5 12.6863Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M12 16L12 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M12 8.01172V8.00172" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /> `,
+    chat: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />`,
+    location: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />`,
+    calendar: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />`,
+    alert: ``,
+    google: `<path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM8 12C8 9.79086 9.79086 8 12 8C13.1048 8 14.1035 8.44662 14.8284 9.17157L16.2426 7.75736C15.1579 6.67267 13.6566 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18C15.3137 18 18 15.3137 18 12V11H12V13H15.874C15.4299 14.7252 13.8638 16 12 16C9.79086 16 8 14.2091 8 12Z" fill="currentColor"></path>`
+  };
+  return icons[iconName] || icons.info;
+};
+---
+
+<Element 
+  class={classes}
+  href={href}
+  target={href ? target : undefined}
+  type={!href ? type : undefined}
+  {...(modal ? { command: "show-modal", commandfor: uniqueId } : {})}
+>
+  {icon && iconPosition === 'left' && (
+    icon === 'alert' ? (
+      <div class="relative mr-2">
+        <div class="w-3 h-3 bg-emerald-400 relative rounded-full"> 
+          <div class="animate-ping-slow absolute left-0 top-0 w-full h-full rounded-full bg-emerald-400"></div> 
+        </div>
+      </div>
+    ) : (
+      <svg class={`${iconClasses[size]} mr-2`} fill="none" color="currentColor" viewBox="0 0 24 24" set:html={getIconSvg(icon)}>
+      </svg>
+    )
+  )}
+  <slot />
+  {icon && iconPosition === 'right' && (
+    icon === 'alert' ? (
+      <div class="relative ml-2">
+        <div class="w-3 h-3 bg-emerald-400 relative rounded-full"> 
+          <div class="animate-ping-slow absolute left-0 top-0 w-full h-full rounded-full bg-emerald-400"></div> 
+        </div>
+      </div>
+    ) : (
+      <svg class={`${iconClasses[size]} ml-2`} fill="none" color="currentColor" viewBox="0 0 24 24" set:html={getIconSvg(icon)}>
+      </svg>
+    )
+  )}
+  
+</Element>
+
+{modal && (
+  <el-dialog>
+    <dialog id={uniqueId} aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+
+      <el-dialog-backdrop class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"></el-dialog-backdrop>
+
+      <div
+        tabindex="0"
+        class={`flex min-h-full text-center focus:outline-none  ${
+          modalType === 'center' ? 'items-center justify-center' : 'items-end justify-end p-4'
+        }`}
+      >
+        <el-dialog-panel class={`relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all
+          ${modalType === 'center' ? 'sm:max-w-4xl' : 'sm:max-w-lg'}
+          data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in
+          dark:bg-gray-800 dark:outline dark:-outline-offset-1 dark:outline-white/10
+        `}>
+          
+          {modalType === 'center' && (
+            <div>
+              <PopupContact dialogId={uniqueId} />
+            </div>
+          )}
+
+          {modalType === 'bottom-right' && (
+            <div>
+              <InfosSticky siteData={siteData} dialogId={uniqueId} />
+            </div>
+          )}
+
+        </el-dialog-panel>
+      </div>
+    </dialog>
+  </el-dialog>
+)}
+

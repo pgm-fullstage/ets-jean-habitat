@@ -1,0 +1,177 @@
+---
+import Button from "../../Button.astro";
+import Review from "../Testimonials/ReviewTwo.astro";
+
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for HeroTwo component');
+}
+
+const { business, ui_sections, cities } = siteData;
+const { hero } = ui_sections;
+
+// Get current city (default to 'louannec' for now, fallback if cities not available)
+const currentCity = cities?.default || 'louannec';
+const cityData = cities?.available?.[currentCity] || {
+  hero_title: "Buscail Habitat Couverture � Louannec",
+  hero_description: "Expert en couverture, isolation et r�novation � Louannec. Nous garantissons des travaux de qualit� pour prot�ger votre habitat durablement."
+};
+---
+
+<div class="relative isolate">
+  <main>
+    <!-- Vid�o en arri�re-plan -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        class="h-full w-full object-cover"
+      >
+        <!-- Utilisation d'une vid�o g�n�rique, � remplacer par votre vid�o -->
+        <source src={hero.video} type="video/mp4">
+        <!-- Fallback vers une image si la vid�o ne charge pas -->
+        <img src={hero.images[0]} alt="Buscail Habitat" class="h-full w-full object-cover">
+      </video>
+      <!-- Overlay sombre pour am�liorer la lisibilit� du texte -->
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <!-- Contenu principal centr� -->
+    <div class="relative z-10 flex min-h-screen items-center justify-center px-6 py-32 sm:py-40 lg:px-8">
+      <div class="mx-auto max-w-5xl text-center">
+        <!-- Review et badge de disponibilit� -->
+        <div class="flex flex-col items-center gap-4 mb-10 hero-fade-in-up" style="animation-delay: 0.2s;">
+                    <Button href="" icon="alert" class="!text-white" variant="secondary">Actuellement disponible</Button>
+          <div class="flex justify-center">
+            <Review siteData={siteData} />
+          </div>
+          
+        </div>
+
+        <!-- Titre principal -->
+        <h1 class="text-white/80 uppercase font-medium text-sm mb-4 hero-fade-in-up" style="animation-delay: 0.4s;">
+          {cityData.hero_title}
+        </h1>
+        
+        <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-6xl lg:text-7xl hero-fade-in-up" style="animation-delay: 0.6s;">
+          {hero.subtitle}
+        </h2>
+        
+        <p class="mt-8 text-lg font-medium text-pretty text-gray-100 sm:text-xl/8 lg:text-2xl max-w-4xl mx-auto hero-fade-in-up" style="animation-delay: 0.8s;">
+          {cityData.hero_description}
+        </p>
+
+        <!-- Boutons d'action -->
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 hero-fade-in-up" style="animation-delay: 1.0s;">
+          <Button 
+            href={`tel:${business.contact.phone}`}
+            size="lg" 
+            icon="phone"
+            class="w-full sm:w-auto"
+          >
+            Nous appeler
+          </Button>
+          <Button 
+            variant="outline" 
+            modal 
+            modalType="center" 
+            icon="devis" 
+            size="lg"
+            class="w-full sm:w-auto !text-white !border-white"
+          >
+            Devis en Ligne
+          </Button>
+        </div>
+
+        <!-- Stats ou points forts -->
+        <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-12 hero-fade-in-up" style="animation-delay: 1.2s;">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-white mb-2">
+              {business.google_rating.average_rating}/5
+            </div>
+            <div class="text-sm text-gray-200">
+              {business.google_rating.total_reviews} avis clients
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-white mb-2">
+              25 ans
+            </div>
+            <div class="text-sm text-gray-200">
+              d'expérience
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-white mb-2">
+              24h/24
+            </div>
+            <div class="text-sm text-gray-200">
+              Dépannage d'urgence
+            </div>
+          </div>
+        </div>
+
+        <!-- Logos Assurance & Garantie Décennale -->
+        <div class="mt-20 hidden lg:block hero-fade-in-up" style="animation-delay: 1.4s;">
+          <div class="text-center">
+            <p class="text-sm font-medium text-white/80 mb-6">Assurance & Garanties</p>
+            <div class="flex justify-center items-center gap-6 opacity-90">
+              {business.certifications.map((cert) => (
+                <div class="bg-white rounded-xl p-4 shadow-lg">
+                  <img 
+                    src={cert.logo}
+                    alt={cert.alt} 
+                    class="h-12 w-auto"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicateur de scroll (optionnel) -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div class="animate-bounce">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-white/70">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+/* Hero-specific CSS animations for instant loading */
+.hero-fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: heroFadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes heroFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Performance optimization for hero animations */
+.hero-fade-in-up {
+  will-change: opacity, transform;
+}
+
+/* Ensure animations work even if JS is disabled */
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

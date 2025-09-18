@@ -1,0 +1,389 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+  title?: string;
+  description?: string;
+  section?: string;
+  noIndex?: boolean;
+  canonicalURL?: string;
+  showHeader?: boolean;
+  showFooter?: boolean; 
+  showStickyInfos?: boolean;
+  siteData?: any; // Optional external siteData (for components that already have it)
+}
+
+const { 
+  title, 
+  description, 
+  section = 'home',
+  noIndex = false,
+  canonicalURL,
+  showHeader = true,   
+  showFooter = true,
+  showStickyInfos = true,
+  siteData: externalSiteData,
+} = Astro.props;
+
+import "../styles/global.css"
+import "../styles/animations.css"
+import Header from "../components/Header/HeaderOne.astro"
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import PopupExit from "../components/PopupExit.astro"
+// Fetch configuration depuis Workers KV
+const CONFIG_URL = import.meta.env.PUBLIC_CONFIG_URL || '/ets-jean-habitat-content.json';
+
+function getMaintenanceConfig() {
+  return {
+    _maintenanceMode: true,
+    business: {
+      name: "Buscail Habitat",
+      owner_name: "Jason Buscail",
+      contact: {
+        phone: "0644089391",
+        phone_formatted: "06.44.08.93.91",
+        email: "contact@buscailhabitat.fr"
+      },
+      domain: "buscailhabitat.fr",
+      google_rating: { has_reviews: false },
+      company_logo: "/logo.svg",
+      favicon: "/favicon.svg",
+      experience_years: "15 ans",
+      warranty: "Garantie décennale"
+    },
+    seo: {
+      title_template: "Maintenance - Buscail Habitat",
+      description_template: "Service temporairement indisponible. Pour toute urgence 24h/24 : 06.44.08.93.91",
+      keywords: ["maintenance", "urgence", "élagage", "Tarn"],
+      meta_tags: { robots: "noindex, follow" }
+    },
+    ui_sections: {
+      header: {
+        navigation: { services: [], links: [] }
+      },
+      theme: {
+        primary: "#8f6e3f",
+        title: "#1A1A1A", 
+        text: "#666666",
+        input: "#8C8C8C",
+        bordered: "#E6E6E6",
+        fill: "#F5F5F5"
+      }
+    }
+  };
+}
+
+async function getSiteConfig() {
+  try {
+    const response = await fetch(CONFIG_URL, {
+      headers: { 'Cache-Control': 'max-age=300' },
+      signal: AbortSignal.timeout(5000)
+    });
+    
+    // Classification des erreurs pour décider du mode
+    if (response.status === 404) {
+      console.warn('Config not found (404) - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    if (response.status >= 500) {
+      console.error(`Server error ${response.status} - entering maintenance mode`);
+      return getMaintenanceConfig();
+    }
+    
+    if (!response.ok) {
+      console.error(`HTTP ${response.status}: ${response.statusText} - entering maintenance mode`);
+      return getMaintenanceConfig();
+    }
+    
+    const contentType = response.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      console.error('Invalid content-type - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    let data;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      console.error('JSON parse error - entering maintenance mode', parseError);
+      return getMaintenanceConfig();
+    }
+    
+    // Validation complète de la structure JSON
+    if (!data || typeof data !== 'object') {
+      console.error('Invalid JSON data - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    if (!data.business) {
+      console.error('Missing business data - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    if (!data.ui_sections) {
+      console.error('Missing ui_sections data - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    // Validation des éléments critiques
+    if (!data.business.name || !data.business.contact || !data.business.contact.phone) {
+      console.error('Missing critical business info - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    if (!data.ui_sections.theme || !data.ui_sections.header) {
+      console.error('Missing critical UI sections - entering maintenance mode');
+      return getMaintenanceConfig();
+    }
+    
+    return data;
+    
+  } catch (error) {
+    console.error('Failed to fetch site config:', error.name, error.message);
+    
+    // Timeout, réseau, parsing = maintenance
+    if (error.name === 'AbortError') {
+      console.error('Request timeout - entering maintenance mode');
+    } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      console.error('Network error - entering maintenance mode');
+    } else {
+      console.error('Parse/unknown error - entering maintenance mode');
+    }
+    
+    return getMaintenanceConfig();
+  }
+}
+
+// Récupération des données (les pages gèrent la redirection maintenance)
+const siteData = externalSiteData || await getSiteConfig();
+
+const business = siteData.business;
+const typography = siteData.ui_sections?.typography;
+const seoConfig = siteData.seo;
+
+// Génération des meta données
+const pageTitle = title || seoConfig.title_template;
+const pageDescription = description || seoConfig.description_template;
+const pageCanonical = canonicalURL || `https://${business.domain}${Astro.url.pathname}`;
+
+// Schema.org JSON-LD - LocalBusiness complet
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": business.name,
+  "image": business.company_logo,
+  "logo": business.company_logo,
+  "url": `https://${business.domain}`,
+  "telephone": business.contact.phone,
+  "email": business.contact.email,
+  "foundingDate": business.founded_year || "2015",
+  "priceRange": business.price_range || "€€",
+  "paymentAccepted": business.payment_accepted || ["Cash", "CreditCard"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": business.adress,
+    "addressLocality": business.city || "BOISSE PENCHOT",
+    "postalCode": business.postal_code || "12300",
+    "addressCountry": business.country || "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "44.3518",
+    "longitude": "2.5753"
+  },
+  "openingHoursSpecification": (business.opening_hours || ["Mo-Fr 08:00-18:00", "Sa 08:00-17:00"]).map(hours => {
+    const [days, time] = hours.split(" ");
+    const [open, close] = time.split("-");
+    return {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": days.split("-").map(day => {
+        const dayMap = { "Mo": "Monday", "Tu": "Tuesday", "We": "Wednesday", "Th": "Thursday", "Fr": "Friday", "Sa": "Saturday", "Su": "Sunday" };
+        return dayMap[day] || day;
+      }),
+      "opens": open,
+      "closes": close
+    };
+  }),
+  "areaServed": business.areas_served || ["Aveyron", "Département 12"],
+  "serviceType": siteData.ui_sections.services?.items?.map(service => service.title) || [],
+  ...(business.google_rating?.has_reviews && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": business.google_rating.average_rating,
+      "reviewCount": business.google_rating.total_reviews,
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }),
+  "sameAs": [
+    business.google?.gmb_url
+  ].filter(Boolean)
+};
+
+const designColors = siteData.ui_sections.theme;
+
+// Generate CSS variables safely for minification
+const cssVariables = designColors ? [
+  ':root {',
+  `  --color-primary: ${designColors.primary};`,
+  `  --color-title: ${designColors.title};`,
+  `  --color-text: ${designColors.text};`,
+  `  --color-bordered: ${designColors.bordered};`,
+  `  --color-fill: ${designColors.fill};`,
+  typography ? `  --font-heading: '${typography.headings?.family || 'Inter'}', system-ui, -apple-system, sans-serif;` : '',
+  typography ? `  --font-body: '${typography.body?.family || 'Inter'}', system-ui, -apple-system, sans-serif;` : '',
+  '}',
+  '/* Typography classes */',
+  'h1, h2, h3, h4, h5, h6, .font-heading { font-family: var(--font-heading); }',
+  'body, p, .font-body { font-family: var(--font-body); }',
+  '.text-primary { color: var(--color-primary) !important; }',
+  '.bg-primary { background-color: var(--color-primary) !important; }',
+  '.border-primary { border-color: var(--color-primary) !important; }',
+  '.text-title { color: var(--color-title) !important; }',
+  '.border-bordered { border-color: var(--color-bordered) !important; }',
+  '.bg-fill { background-color: var(--color-fill) !important; }'
+].filter(Boolean).join('\n') : '';
+
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={pageDescription} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content={business.owner_name} />
+    <meta name="theme-color" content={designColors.primary} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={business.favicon} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- SEO -->
+    <title>{pageTitle}</title>
+    <meta name="keywords" content={seoConfig.keywords?.join(', ') || ''} />
+    <link rel="canonical" href={pageCanonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    
+    <!-- Robots -->
+    {noIndex || !seoConfig.meta_tags ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content={seoConfig.meta_tags.robots || "index, follow"} />
+    )}
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={seoConfig.site_url || pageCanonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:locale" content="fr_FR" />
+    {seoConfig.og_image_url && (
+      <>
+        <meta property="og:image" content={seoConfig.og_image_url} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={`${business.name} - ${seoConfig.description_template}`} />
+      </>
+    )}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {seoConfig.og_image_url && (
+      <meta name="twitter:image" content={seoConfig.og_image_url} />
+    )}
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts -->
+    {typography?.headings?.google_font_url && (
+      <link href={typography.headings.google_font_url} rel="stylesheet" />
+    )}
+    {typography?.body?.google_font_url && typography.body.google_font_url !== typography.headings.google_font_url && (
+      <link href={typography.body.google_font_url} rel="stylesheet" />
+    )}
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Trustindex loader (méthode alternative pour frameworks JS) -->
+    <script defer async src="https://cdn.trustindex.io/loader.js"></script>
+
+    <!-- Consent Management Platform IAB -->
+    <script type="text/javascript" src="https://cache.consentframework.com/js/pa/48770/c/rSDIY/stub"></script>
+    <script type="text/javascript" src="https://choices.consentframework.com/js/pa/48770/c/rSDIY/cmp" async></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+  </head>
+  
+  <body data-section={section} class="bg-white text-gray-900 font-sans antialiased">
+    <!-- Header -->
+    {showHeader && <Header siteData={siteData} />}
+    
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+        {showStickyInfos && 
+            <PopupExit/>
+
+        <div class="fixed bottom-4  right-4 z-40 md:bottom-4 md:right-4 md:left-auto md:w-auto">
+        <Button 
+          modal
+          modalType="bottom-right"
+          icon="info"
+          iconPosition="left"
+          siteData={siteData}
+          variant="primary"
+          size="md"
+          radius="full"
+          class=""
+        >
+          Contact
+        </Button>
+    </div>}
+
+    
+   
+
+    <!-- Footer (sera un composant séparé) -->
+    {showFooter && <Footer siteData={siteData} />}
+    <style set:html={cssVariables} />
+
+    <!-- Export des données pour les composants -->
+    <script define:vars={{ siteData }}>
+      window.siteData = siteData;
+      
+      // Fonction utilitaire pour tracking
+      function trackConversion(eventName, data = {}) {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, data);
+        }
+      }
+      
+      window.trackConversion = trackConversion;
+    </script>
+    
+    <!-- Animation System -->
+    <script src="../scripts/animations.js" ></script>
+  </body>
+</html>

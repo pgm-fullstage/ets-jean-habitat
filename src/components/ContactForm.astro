@@ -1,0 +1,137 @@
+---
+import Button from "./Button.astro";
+import { actions } from "astro:actions";
+
+// Récupération du résultat de l'action
+const result = Astro.getActionResult(actions.contact);
+
+console.log('🔍 Résultat de l\'action:', result);
+
+// Fonction helper pour vérifier si c'est une erreur d'input
+function isInputError(error: any): boolean {
+  return error && typeof error === 'object' && 'fields' in error;
+}
+
+// Gérer la redirection côté client pour éviter ResponseSentError
+if (result && !result.error && result.data?.redirect) {
+  // On utilise une redirection JavaScript côté client
+}
+---
+
+{result?.error && (
+  <div id="error-message" class="p-4 rounded-md mb-6 bg-red-50 text-red-800">
+    {result.error.message}
+  </div>
+)}
+
+{result && !result.error && (
+  <div id="contact-success-message" class="p-4 rounded-md mb-6 bg-green-50 text-green-800">
+    ✅ Message envoyé avec succès ! Redirection en cours...
+  </div>
+)}
+
+<form method="POST" action={actions.contact} class="mx-auto max-w-xl space-y-6" id="contact-form">
+    <!-- Honeypot anti-spam (invisible pour les humains) -->
+    <div class="honeypot" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+        <label for="website">Site web (laissez vide)</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="new-password">
+    </div>
+    
+    <!-- Timestamp de rendu pour validation temporelle -->
+    <input type="hidden" name="form-timestamp" id="form-timestamp">
+    
+    <div>
+        <label for="message" class="sr-only">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Je décris mon besoin" required class="block w-full rounded-md bg-fill px-3.5 py-2 text-base text-title outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary"></textarea>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <label for="email" class="sr-only">Email</label>
+        <input id="email" type="email" name="email" placeholder="mon.adresse@mail.com" autocomplete="email" required class="block w-full rounded-md bg-fill px-3.5 py-2 text-base text-title outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary" />
+      </div>
+      <div>
+        <label for="phone-number" class="sr-only">Numéro de Téléphone</label>
+        <input id="phone-number" type="text" name="phone-number" placeholder="Mon numéro de téléphone" required class="block w-full rounded-md bg-fill px-3.5 py-2 text-base text-title outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary" />
+      </div>
+      <div>
+        <div class="flex items-start gap-2">
+          <svg class="w-4 h-4 mt-0.5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+          <div>
+            <span class="font-medium text-green-600">Informations sécurisées</span>
+            <br />
+            <span class="text-xs leading-relaxed text-text">
+              En soumettant ce formulaire, vous acceptez les 
+              <a href="/legal" class="font-semibold text-primary dark:text-indigo-400 hover:underline">conditions d'utilisations</a> 
+              du site et sa 
+              <a href="/legal" class="font-semibold text-primary dark:text-indigo-400 hover:underline">politique de confidentialité</a>. 
+              Vos données sont traitées de façon sécurisée et conforme RGPD.
+            </span>
+          </div>
+        </div>
+      </div>
+      
+     
+    </div>
+    
+    <!-- Cloudflare Turnstile - Mode Non-Interactive (UX optimisée) -->
+    <div class="flex justify-start">
+      <div class="cf-turnstile" 
+           data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+           data-theme="light"
+           data-size="normal"
+           data-appearance="always"
+           data-callback="turnstileCallback"
+           data-expired-callback="turnstileExpiredCallback"
+           data-error-callback="turnstileErrorCallback">
+      </div>
+    </div>
+    
+    <div class="mt-10 w-full grid">
+      <Button type="submit" radius="lg" size="lg" id="submit-btn">Je veux être recontacté</Button>  
+    </div>
+</form>
+
+<!-- Script Turnstile déjà chargé dans Layout.astro -->
+
+<script>
+  // Initialisation du timestamp
+  document.addEventListener('DOMContentLoaded', function() {
+    // Timestamp de rendu du formulaire
+    document.getElementById('form-timestamp').value = Date.now().toString();
+    
+    const isSuccess = document.querySelector('#contact-success-message');
+    if (isSuccess) {
+      setTimeout(() => {
+        window.location.href = '/remerciement';
+      }, 1500);
+    }
+    
+    const errorMessage = document.getElementById('error-message');
+    if (errorMessage) {
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  // Callback Turnstile - validation non-interactive
+  window.turnstileCallback = function(token) {
+    console.log('Turnstile validé (non-interactive):', token);
+    // En mode non-interactive, validation automatique sans interaction utilisateur
+  };
+
+  // Gestion de l'expiration
+  window.turnstileExpiredCallback = function() {
+    console.log('Turnstile expiré - rechargement automatique');
+    // En mode non-interactive, rechargement automatique du token
+    if (window.turnstile) {
+      window.turnstile.reset();
+    }
+  };
+
+  // Gestion des erreurs
+  window.turnstileErrorCallback = function(error) {
+    console.error('Erreur Turnstile:', error);
+    // En production, considérer un fallback ou log pour monitoring
+  };
+</script>

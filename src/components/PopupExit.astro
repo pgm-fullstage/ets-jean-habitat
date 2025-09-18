@@ -1,0 +1,77 @@
+---
+import ContactForm from "./ContactForm.astro";
+import Review from "./HomePage/Testimonials/ReviewTwo.astro";
+
+// Récupérer siteData depuis les props ou window si disponible
+const { siteData } = Astro.props;
+const data = siteData || (typeof window !== 'undefined' ? window.siteData : null);
+const business = data?.business;
+---
+
+<el-dialog>
+  <dialog id="exit-intent-popup" aria-labelledby="exit-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent" >
+    <el-dialog-backdrop class="fixed inset-0 bg-black/60 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+
+    <div tabindex="0" class="flex min-h-full items-center justify-center p-4 focus:outline-none">
+      <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-900 shadow-xl transition-all data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in mx-4 max-w-4xl w-full p-10">
+        <button command="close" commandfor="exit-intent-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+          <div class="relative px-6">
+            <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+              
+              <div class="mb-4">
+                <span class="inline-flex items-center rounded-md bg-orange-50 px-2 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-orange-600/20 dark:bg-orange-400/10 dark:text-orange-400 dark:ring-orange-400/30">
+                  (1) Action Manquante
+                </span>
+              </div>
+              
+              <h2 id="exit-title" class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">Vous partez ?</h2>
+              <p class="mt-6 text-lg/8 text-gray-600 dark:text-gray-400">Ne passez pas à côté d'un devis gratuit et d'une remise de 5% sur votre première intervention. De quoi avez-vous besoin ?</p>
+              
+              <div class="mt-8">
+                <Review siteData={siteData} />
+              </div>
+
+              <!-- Trustindex widget avec méthode alternative (ReactJS) -->
+
+           
+            
+            </div>
+          </div>
+          <ContactForm/>
+        </div>
+      </el-dialog-panel>
+    </div>
+  </dialog>
+</el-dialog>
+
+<script>
+  let exitIntentTriggered = false;
+  
+  function showExitIntentPopup() {
+    if (!exitIntentTriggered) {
+     
+      
+      exitIntentTriggered = true;
+      const popup = document.getElementById('exit-intent-popup');
+      if (popup) {
+        popup.showModal();
+      }
+    }
+  }
+  
+  // Exit intent detection
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY <= 0) {
+      showExitIntentPopup();
+    }
+  });
+
+  // Plus besoin du gestionnaire complexe - Trustindex utilise maintenant la méthode alternative
+</script>
+

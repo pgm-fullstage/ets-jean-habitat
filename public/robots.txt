@@ -1,0 +1,8 @@
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://buscailhabitat.fr/sitemap.xml
+
+

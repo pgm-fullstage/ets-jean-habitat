@@ -1,0 +1,44 @@
+---
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for TestimonialsOne component');
+}
+
+const { business, ui_sections } = siteData;
+const { theme } = ui_sections;
+
+// Section header data
+const testimonials = {
+  section: {
+    title: "Témoignages Clients",
+    main_title: "Ce que disent nos clients",
+    description: `Découvrez les retours de nos ${business.google_rating.total_reviews} clients satisfaits avec une note moyenne de ${business.google_rating.average_rating}/5 étoiles.`
+  }
+};
+---
+
+<div class="overflow-hidden bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- En-tête de section -->
+    <div class="mx-auto max-w-2xl text-center mb-16">
+      <h2 class="font-semibold text-base text-primary uppercase tracking-widest mb-3 animate-on-scroll fade-in-up" >
+        {testimonials.section.title}
+      </h2>
+      <h3 class="text-3xl font-bold tracking-tight text-title sm:text-4xl mb-6 animate-on-scroll fade-in-up" data-delay="100">
+        {testimonials.section.main_title}
+      </h3>
+      <p class="text-lg leading-8 animate-on-scroll fade-in-up" style={`color: ${theme.text}`} data-delay="200">
+        {testimonials.section.description}
+      </p>
+    </div>
+
+    <!-- TrustIndex Widget Container -->
+    <div class="text-center animate-on-scroll zoom-in" data-delay="300">
+      {business.trustindex?.testimonials_id && (
+        <script defer async src={`https://cdn.trustindex.io/loader.js?${business.trustindex.testimonials_id}`}></script>
+      )}
+    </div>
+  </div>
+</div>
+

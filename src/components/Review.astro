@@ -1,0 +1,8 @@
+---
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+const { business } = siteData || {};
+---
+
+{business?.trustindex?.review_id && (
+  <script defer async src={`https://cdn.trustindex.io/loader.js?${business.trustindex.review_id}`}></script>
+)}

@@ -1,0 +1,23 @@
+---
+import Button from '../components/Button.astro';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout showHeader={false} showFooter={false} noIndex={true} showStickyInfos={false}>
+<main class="grid min-h-screen place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-gray-900">
+  <div class="text-center">
+    <p class="text-base font-semibold text-primary dark:text-primary/80">Erreur 404</p>
+    <h1 class="mt-4 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl dark:text-white">
+      Oups, cette page est introuvable.
+    </h1>
+    <p class="mt-6 text-lg font-medium text-gray-500 sm:text-xl/8 dark:text-gray-400">
+      Désolé, nous n’avons pas pu trouver la page que vous cherchez.<br />
+      Retournez à la page d’accueil pour découvrir plus de contenu.
+    </p>
+    <div class="mt-10 flex items-center justify-center gap-x-6">
+      <Button href="/" variant="primary" size="md">
+        Retourner à l’accueil
+      </Button>
+    </div>
+  </div>
+</main>
+</Layout>

@@ -1,0 +1,140 @@
+---
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for RealizationsOne component');
+}
+
+const { business, cities } = siteData;
+
+// Get current city for dynamic content
+const currentCity = cities?.default || 'louannec';
+const cityData = cities?.available?.[currentCity] || {
+  hero_title: "Buscail Habitat Couverture à Louannec"
+};
+
+// Generate array of photo URLs using the client_folder
+const photoNumbers = Array.from({length: 25}, (_, i) => i + 1); // photo_1.jpg to photo_25.jpg
+const realizationPhotos = photoNumbers.map(num => 
+  `https://images.fullstage.fr/clients/${business.client_folder}/photo_${num}.jpg`
+);
+---
+
+<section class="bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-base/7 font-semibold text-primary animate-on-scroll fade-in-up">{cityData.hero_title}</p>
+      <h3 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-title sm:text-5xl animate-on-scroll fade-in-up" data-delay="100">Nos Réalisations</h3>
+      <p class="mt-6 text-xl/8 text-balance text-text animate-on-scroll fade-in-up" data-delay="200">
+        Découvrez nos dernières réalisations en couverture, isolation et rénovation dans la région.
+      </p>
+    </div>
+    
+    <!-- Mobile: Marquee -->
+    <div class="mt-12 -mx-6 overflow-hidden block lg:hidden">
+      <div class="marquee-container">
+        <div class="marquee-content">
+          {realizationPhotos.slice(0, 12).map((photo) => (
+            <div class="marquee-item">
+              <img 
+                src={photo} 
+                alt="Réalisation Buscail Habitat" 
+                class="h-80 w-80 rounded-xl object-cover shadow-lg ring-1 ring-gray-900/10"
+                loading="lazy"
+              />
+            </div>
+          ))}
+          <!-- Duplicate for seamless loop -->
+          {realizationPhotos.slice(0, 12).map((photo) => (
+            <div class="marquee-item">
+              <img 
+                src={photo} 
+                alt="Réalisation Buscail Habitat" 
+                class="h-80 w-80 rounded-xl object-cover shadow-lg ring-1 ring-gray-900/10"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop: Masonry Grid -->
+    <div class="mt-12 hidden lg:block animate-on-scroll fade-in-bottom" data-delay="300">
+      <div class="masonry-grid">
+        {realizationPhotos.slice(0, 15).map((photo, index) => (
+          <div class="masonry-item animate-on-scroll zoom-in" data-delay={((index * 50) + 400).toString()}>
+            <img 
+              src={photo} 
+              alt="Réalisation Buscail Habitat" 
+              class={`w-full rounded-xl object-cover shadow-lg ring-1 ring-gray-900/10 ${
+                index % 3 === 0 ? 'h-80' : index % 3 === 1 ? 'h-96' : 'h-72'
+              }`}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Mobile Marquee */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  animation: marquee 40s linear infinite;
+  gap: 1.5rem;
+}
+
+.marquee-item {
+  flex: 0 0 auto;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Desktop Masonry Grid */
+.masonry-grid {
+  column-count: 4;
+  column-gap: 1.5rem;
+  column-fill: balance;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  break-inside: avoid;
+}
+
+/* Responsive masonry */
+@media (max-width: 1280px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+</style>

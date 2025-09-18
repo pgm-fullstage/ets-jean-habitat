@@ -1,0 +1,206 @@
+---
+// Self-contained maintenance page to avoid circular dependencies
+const business = {
+  name: "Ets Jean Habitat",
+  phone: "+33749613135",
+  phone_formatted: "07.49.61.31.35", 
+  email: "entreprise.ju12@gmail.com"
+};
+const primaryColor = "#EA580C";
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Maintenance en cours - Ets Jean Habitat</title>
+    <meta name="description" content="Service temporairement indisponible. Pour toute urgence : 07.49.61.31.35" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+    .min-h-screen { min-height: 100vh; }
+    .bg-gray-50 { background-color: #f9fafb; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .justify-center { justify-content: center; }
+    .items-center { align-items: center; }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .max-w-md { max-width: 28rem; }
+    .w-full { width: 100%; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mt-4 { margin-top: 1rem; }
+    .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+    .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-4 { padding: 1rem; }
+    .pt-4 { padding-top: 1rem; }
+    .h-20 { height: 5rem; }
+    .h-16 { height: 4rem; }
+    .w-16 { width: 4rem; }
+    .h-8 { height: 2rem; }
+    .w-8 { width: 2rem; }
+    .h-6 { height: 1.5rem; }
+    .w-6 { width: 1.5rem; }
+    .w-auto { width: auto; }
+    .bg-white { background-color: white; }
+    .bg-yellow-50 { background-color: #fefce8; }
+    .border { border: 1px solid #e5e7eb; }
+    .border-yellow-200 { border-color: #fde68a; }
+    .border-gray-200 { border-color: #e5e7eb; }
+    .border-2 { border-width: 2px; }
+    .border-t { border-top: 1px solid #e5e7eb; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-full { border-radius: 9999px; }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .font-medium { font-weight: 500; }
+    .text-gray-900 { color: #111827; }
+    .text-gray-600 { color: #4b5563; }
+    .text-gray-500 { color: #6b7280; }
+    .text-gray-400 { color: #9ca3af; }
+    .text-yellow-900 { color: #713f12; }
+    .text-yellow-700 { color: #a16207; }
+    .text-yellow-600 { color: #ca8a04; }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .leading-relaxed { line-height: 1.625; }
+    .animate-bounce { animation: bounce 1s infinite; }
+    
+    .btn-primary { 
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #8f6e3f; 
+      color: white;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      background-color: #7a5e36;
+      transform: translateY(-1px);
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+      50% { transform: none; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+    }
+    
+    @media (min-width: 640px) {
+      .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+    
+    @media (min-width: 1024px) {
+      .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    }
+  </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-md w-full">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+        <img src="/logo.svg" alt="Ets Jean Habitat" class="mx-auto h-20 w-auto" />
+      </div>
+
+      <!-- Carte de maintenance -->
+      <div class="bg-white py-8 px-6 shadow-xl rounded-2xl border border-yellow-100">
+        <!-- Icône maintenance -->
+        <div class="flex justify-center mb-6">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-50 border-2 border-yellow-200">
+            <svg class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Message principal -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl font-bold text-gray-900 mb-4">
+            Maintenance en cours
+          </h1>
+          <p class="text-gray-600 leading-relaxed">
+            Nous effectuons une maintenance technique pour améliorer nos services.
+            Le site sera de nouveau disponible très prochainement.
+          </p>
+        </div>
+
+        <!-- Contact d'urgence -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
+          <div class="text-center">
+            <h2 class="text-lg font-semibold text-yellow-900 mb-3">
+              Urgence 24h/24
+            </h2>
+            <p class="text-sm text-yellow-700 mb-4">
+              Arbre dangereux, branche tombée, urgence élagage ?
+            </p>
+            <a 
+              href="tel:+33749613135"
+              class="btn-primary inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              {business.phone_formatted}
+            </a>
+          </div>
+        </div>
+
+        <!-- Informations complémentaires -->
+        <div class="text-center space-y-3">
+          <div class="pt-4 border-t border-gray-200">
+            <p class="text-xs text-gray-400" id="status-time">
+              Dernière vérification : <span id="last-check-time"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+        <!-- Footer maintenance -->
+        <div class="text-center mt-8">
+          <p class="text-sm text-gray-500">
+            {business.name} - Expert en élagage et entretien d'espaces verts en Aveyron
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mise à jour du timestamp
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      const timeElement = document.getElementById('last-check-time');
+      if (timeElement) {
+        timeElement.textContent = timeString;
+      }
+
+      // Auto-refresh toutes les 5 minutes pour vérifier si maintenance terminée
+      setTimeout(() => {
+        window.location.reload();
+      }, 5 * 60 * 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,605 @@
+{
+  "business": {
+    "name": "Ets Jean Habitat",
+    "siret":"53865344500014",
+    "owner_name": "Jean Urgargowitch",
+    "company_logo": "https://images.fullstage.fr/clients/ets_jean_habitat/logo.svg",
+    "client_folder": "ets_jean_habitat",
+    "zones_map": "https://images.fullstage.fr/clients/ets_jean_habitat/map.png",
+    "adress":"6 LIEU DIT LE VERT, 12300 BOISSE PENCHOT",
+    "city": "Boisse Penchot",
+    "postal_code": "12300",
+    "country": "FR",
+    "favicon":"https://images.fullstage.fr/clients/ets_jean_habitat/favicon.svg",
+    "founded_year": "2015",
+    "experience_years": "15 ans",
+    "warranty": "Garantie décennale",
+    "certifications": [
+      {
+        "name": "Garantie Décennale",
+        "logo": "https://images.fullstage.fr/general/assurance/garantie-decennale.png",
+        "alt": "Garantie Décennale"
+      },
+      {
+        "name": "Qualibat",
+        "logo": "https://images.fullstage.fr/general/assurance/qualibat.webp",
+        "alt": "Qualibat"
+      },
+      {
+        "name": "Artisan Certifié",
+        "logo": "https://images.fullstage.fr/general/assurance/artisan.png",
+        "alt": "Artisan Certifié"
+      },
+      {
+        "name": "AXA Assurance",
+        "logo": "https://images.fullstage.fr/general/assurance/axa.png",
+        "alt": "AXA Assurance"
+      },
+      {
+        "name": "Satisfaction Client",
+        "logo": "https://images.fullstage.fr/general/assurance/satisfaction.png",
+        "alt": "Satisfaction Client"
+      }
+    ],
+    "why_choose_us": [
+      {
+        "title": "15 ans d'expérience",
+        "description": "Fort de 15 années d'expertise dans l'élagage et l'entretien d'arbres, nous maîtrisons parfaitement les techniques d'élagage, abattage et entretien d'espaces verts en Aveyron.",
+        "icon": "expert"
+      },
+      {
+        "title": "Matériel moderne",
+        "description": "Ets Jean Habitat investit dans des équipements de pointe : nacelle élévatrice, outils de coupe professionnels et matériel de sécurité certifié pour des interventions de qualité.",
+        "icon": "speed"
+      },
+      {
+        "title": "Expertise polyvalente",
+        "description": "Spécialisés en élagage et arboriculture, nous élargissons nos compétences aux travaux paysagers et d'entretien extérieur pour une approche globale de vos espaces verts.",
+        "icon": "price"
+      }
+    ],
+    "opening_hours": [
+      "Mo-Sa 08:00-19:00"
+    ],
+    "payment_accepted": ["Cash", "CreditCard", "BankTransfer"],
+    "price_range": "€€",
+    "areas_served": ["Aveyron", "Département 12"],
+    "contact": {
+      "phone": "+33749613135",
+      "phone_formatted": "07.49.61.31.35",
+      "email": "entreprise.ju12@gmail.com"
+    },
+    "google": {
+      "gmb_url": "https://maps.app.goo.gl/tT62pDb8Ogug1LoP6",
+      "review_url": "https://share.google/tT62pDb8Ogug1LoP6",
+      "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d730804.3866439824!2d2.64567665!3d44.31602225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x28c4fa2a014df98f%3A0x8b4354e04244df3c!2sEts%20Jean%20Habitat!5e0!3m2!1sen!2sfr!4v1758208343720!5m2!1sen!2sfr"
+    },
+    "domain": "etsjeanhabitat.fr",
+    "google_rating": {
+      "has_reviews": false,
+      "average_rating": 5,
+      "total_reviews": 34
+    },
+    "trustindex": {
+      "testimonials_id": "26b7e5753e1e56931c66aa37da7",
+      "review_id": "143a424536965712dd26fa038cd"
+    }
+  },
+  "seo": {
+    "title_template": "Ets Jean Habitat - Élagage et Entretien d'arbres en Aveyron",
+    "description_template": "Expert élagage, abattage et entretien d'arbres en Aveyron. Devis gratuit, intervention rapide, professionnel certifié. Contactez-nous !",
+    "og_image_url": "https://images.fullstage.fr/clients/ets_jean_habitat/og-image.jpg",
+    "site_url": "https://etsjeanhabitat.fr",
+    "keywords": [
+      "élagage",
+      "abattage",
+      "taille",
+      "arbre",
+      "entretien",
+      "jardin",
+      "paysage",
+      "Boisse Penchot",
+      "Aveyron",
+      "12300",
+      "Rodez",
+      "Millau",
+      "Albi"
+    ]
+  },
+  "cities": {
+    "default": "rodez",
+    "available": {
+      "rodez": {
+        "id": 1,
+        "name": "Rodez",
+        "code": "12000",
+        "display_name": "à Rodez",
+        "hero_title": "Ets Jean Habitat Élagage à Rodez",
+        "hero_description": "Ets Jean Habitat, spécialiste de l'élagage à Rodez. Entreprise aveyronnaise au service de vos arbres et espaces verts depuis 15 ans.",
+        "meta_description": "Élagage Rodez : Ets Jean Habitat, expert élagage, abattage, taille d'arbres à Rodez 12000. Devis gratuit, intervention rapide. ☎️ 07.49.61.31.35"
+      },
+      "millau": {
+        "id": 2,
+        "name": "Millau",
+        "code": "12100",
+        "display_name": "à Millau",
+        "hero_title": "Ets Jean Habitat Élagage à Millau",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Millau. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement.",
+        "meta_description": "Élagage Millau 12100 : Ets Jean Habitat, spécialiste élagage, abattage, taille d'arbres. Devis gratuit, intervention rapide en Aveyron."
+      },
+      "villefranche": {
+        "id": 3,
+        "name": "Villefranche-de-Rouergue",
+        "code": "12200",
+        "display_name": "à Villefranche-de-Rouergue",
+        "hero_title": "Ets Jean Habitat Élagage à Villefranche-de-Rouergue",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Villefranche-de-Rouergue. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "onet-le-chateau": {
+        "id": 4,
+        "name": "Onet-le-Château",
+        "code": "12850",
+        "display_name": "à Onet-le-Château",
+        "hero_title": "Ets Jean Habitat Élagage à Onet-le-Château",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Onet-le-Château. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "decazeville": {
+        "id": 5,
+        "name": "Decazeville",
+        "code": "12300",
+        "display_name": "à Decazeville",
+        "hero_title": "Ets Jean Habitat Élagage à Decazeville",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Decazeville. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "saint-affrique": {
+        "id": 6,
+        "name": "Saint-Affrique",
+        "code": "12400",
+        "display_name": "à Saint-Affrique",
+        "hero_title": "Ets Jean Habitat Élagage à Saint-Affrique",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Saint-Affrique. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "espalion": {
+        "id": 7,
+        "name": "Espalion",
+        "code": "12500",
+        "display_name": "à Espalion",
+        "hero_title": "Ets Jean Habitat Élagage à Espalion",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Espalion. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "capdenac-gare": {
+        "id": 8,
+        "name": "Capdenac-Gare",
+        "code": "12700",
+        "display_name": "à Capdenac-Gare",
+        "hero_title": "Ets Jean Habitat Élagage à Capdenac-Gare",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Capdenac-Gare. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "figeac": {
+        "id": 9,
+        "name": "Figeac",
+        "code": "46100",
+        "display_name": "à Figeac",
+        "hero_title": "Ets Jean Habitat Élagage à Figeac",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Figeac. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      },
+      "laguiole": {
+        "id": 10,
+        "name": "Laguiole",
+        "code": "12210",
+        "display_name": "à Laguiole",
+        "hero_title": "Ets Jean Habitat Élagage à Laguiole",
+        "hero_description": "Expert en élagage, abattage et entretien d'arbres à Laguiole. Nous garantissons des services de qualité pour l'entretien de vos espaces verts durablement."
+      }
+    }
+  },
+  "ui_sections": {
+    "about_us": {
+      "section_title": "Qui sommes-nous",
+      "main_title": "Votre spécialiste élagage en Aveyron depuis 15 ans",
+      "main_description": "Basée à Boisse Penchot, Ets Jean Habitat est votre partenaire de confiance pour l'entretien et la taille d'arbres dans tout le département de l'Aveyron. Nous mettons notre expérience au service de vos arbres avec passion et expertise.",
+      "expertise": {
+        "title": "Notre savoir-faire",
+        "paragraphs": [
+          "Entreprise familiale implantée en Aveyron, nous excellons dans l'art de l'élagage et du soin des arbres. De la taille douce au démontage complexe, nous adaptons nos méthodes à chaque essence et situation. Notre approche respectueuse de l'arbre garantit sa santé et sa longévité.",
+          "Notre gamme de prestations couvre l'ensemble des besoins en arboriculture : élagage raisonné, abattage technique, entretien paysager et conseils personnalisés. Fort de 15 ans d'expérience, chaque chantier bénéficie de notre connaissance approfondie des arbres de l'Aveyron."
+        ]
+      },
+      "images": [
+        "/elagage/carré/elagage-sur-corde-one.png",
+        "/elagage/carré/etetage-two.png",
+        "/elagage/carré/dessouchage-one.png",
+        "/elagage/carré/taille-arbre-three.png"
+      ],
+      "partners_title": "Nos partenaires"
+    },
+    "nacelle_cta": {
+      "section_title": "Matériel de pointe",
+      "main_title": "Équipement moderne pour l'élagage en toute sécurité",
+      "description": "Ets Jean Habitat investit dans du matériel professionnel de dernière génération pour garantir la qualité et la sécurité de nos interventions. Nacelle élévatrice, tronçonneuses performantes, matériel de grimpe certifié : nous disposons de tous les outils nécessaires pour mener à bien vos projets d'élagage.",
+      "image": "/elagage/carré/nacelle-one.png",
+      "image_alt": "Équipement professionnel Ets Jean Habitat pour travaux d'élagage",
+      "cta_primary": {
+        "text": "Demander un devis",
+        "url": "#contact"
+      },
+      "cta_secondary": {
+        "text": "07.49.61.31.35",
+        "url": "tel:+33749613135"
+      }
+    },
+    "hero": {
+      "title": "Élagage Professionnel en Aveyron",
+      "subtitle": "Votre Partenaire Arboricole",
+      "description": "Ets Jean Habitat, votre spécialiste élagage en Aveyron. Intervention de qualité pour l'entretien et la sécurité de vos arbres et espaces verts.",
+      "video": "https://images.fullstage.fr/videos/elagueur/arboriste-one.mp4",
+      "images": [
+        "https://images.fullstage.fr/clients/hj_habitat/photo_5.jpg",
+        "https://images.fullstage.fr/clients/hj_habitat/photo_6.jpg",
+        "https://images.fullstage.fr/clients/hj_habitat/photo_7.jpg",
+        "https://images.fullstage.fr/clients/hj_habitat/photo_8.jpg",
+        "https://images.fullstage.fr/clients/hj_habitat/photo_9.jpg"
+      ]
+    },
+    "header": {
+      "navigation": {
+        "services": [
+          {
+            "title": "Élagage d'arbres",
+            "description": "Taille et élagage professionnels pour la santé et la sécurité de vos arbres",
+            "icon": "tree",
+            "image": "/elagage/carré/elagage-sur-corde-two.png",
+            "anchor": "#elagage"
+          },
+          {
+            "title": "Abattage d'arbres", 
+            "description": "Abattage sécurisé et démontage d'arbres dangereux ou gênants",
+            "icon": "cut",
+            "image": "/elagage/carré/abattage-one.png",
+            "anchor": "#abattage"
+          },
+          {
+            "title": "Taille de haies",
+            "description": "Taille et entretien de haies pour un jardin soigné et structuré",
+            "icon": "hedge",
+            "image": "/elagage/carré/taille-haie-one.png",
+            "anchor": "#taille-haies"
+          },
+          {
+            "title": "Entretien d'espaces verts",
+            "description": "Entretien complet de jardins et espaces verts pour un environnement harmonieux",
+            "icon": "garden",
+            "image": "/elagage/carré/entretien-jardin-one.png",
+            "anchor": "#entretien-jardins"
+          },
+          {
+            "title": "Pose de clôture",
+            "description": "Installation et rénovation de clôtures en aluminium, PVC et grillage",
+            "icon": "fence",
+            "image": "/elagage/carré/pose-cloture-two.png",
+            "anchor": "#cloture"
+          },
+          {
+            "title": "Dessouchage", 
+            "description": "Extraction de souches et nettoyage du terrain pour vos nouveaux projets",
+            "icon": "stump",
+            "image": "/elagage/carré/dessouchage-four.png",
+            "anchor": "#dessouchage"
+          },
+          {
+            "title": "Pose de gazon",
+            "description": "Installation de pelouse synthétique et naturelle pour vos espaces verts",
+            "icon": "grass",
+            "image": "/elagage/carré/pose-gazon-two.png",
+            "anchor": "#gazon"
+          },
+          {
+            "title": "Intervention d'urgence",
+            "description": "Intervention rapide 24h/24 et 7j/7 pour arbres dangereux ou tombés",
+            "icon": "emergency",
+            "image": "/elagage/carré/nettoyage-ext-three.png",
+            "anchor": "#urgence"
+          }
+        ],
+        "links": [
+          { "text": "À propos", "url": "#about" },
+          { "text": "Témoignages", "url": "#testimonials" },
+          { "text": "Comment ça marche ?", "url": "#process" },
+          { "text": "Contact", "url": "#contact" }
+        ]
+      }
+    },
+    "theme": {
+      "primary": "#EA580C",
+      "title": "#1A1A1A",
+      "text": "#666666",
+      "input": "#8C8C8C",
+      "bordered": "#E6E6E6",
+      "fill": "#F5F5F5"
+    },
+    "typography": {
+      "headings": {
+        "family": "Lato",
+        "weights": [400, 500, 600, 700],
+        "google_font_url": "https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap"
+      },
+      "body": {
+        "family": "Inter",
+        "weights": [300, 400, 500],
+        "google_font_url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      }
+    },
+    "painkiller": {
+      "problems": {
+        "title": "Vos problématiques",
+        "main_title": "Des soucis avec vos arbres ?",
+        "description": "Vos arbres, haies ou espaces verts vous posent problème ? Nous identifions vos difficultés et vous apportons des solutions durables et respectueuses de l'environnement.",
+        "image_url": "/elagage/carré/abattage-two.png",
+        "image_alt": "Jardin avec arbres à élaguer",
+        "items": [
+          {
+            "title": "Arbres dangereux ou mal entretenus ?",
+            "description": "Branches mortes, arbres penchés, risque de chute ? Nous intervenons rapidement pour sécuriser votre propriété et éviter les accidents.",
+            "icon": "danger"
+          },
+          {
+            "title": "Jardin envahi ou mal entretenu ?",
+            "description": "Haies non taillées, broussailles envahissantes, arbres trop volumineux ? Notre expertise redonne ordre et beauté à vos espaces verts.",
+            "icon": "overgrown"
+          },
+          {
+            "title": "Arbres malades ou abîmés ?",
+            "description": "Maladies, parasites, dépérissement ? Nos soins spécialisés protègent et guérissent vos arbres pour préserver leur santé.",
+            "icon": "sick"
+          }
+        ]
+      },
+      "solutions": {
+        "title": "Nos solutions",
+        "main_title": "Ets Jean Habitat à vos côtés",
+        "description_template": "Fort de notre expertise et de nos {reviews} avis clients ({rating}/5), nous vous proposons des solutions complètes et respectueuses de l'environnement.",
+        "image_url": "/elagage/carré/elagage-sur-corde-four.png",
+        "image_alt": "Équipe Ets Jean Habitat au travail",
+        "items": [
+          {
+            "title": "Intervention rapide 24h/24",
+            "description": "Arbre tombé, branches dangereuses ou urgence ? Notre équipe intervient rapidement pour sécuriser votre propriété et limiter les risques.",
+            "icon": "check"
+          },
+          {
+            "title": "Devis gratuit et détaillé",
+            "description": "Évaluation précise de vos besoins d'élagage avec un devis transparent. Pas de surprise, que des solutions adaptées à votre budget.",
+            "icon": "clipboard"
+          },
+          {
+            "title": "Expertise et respect de l'environnement",
+            "description": "Techniques respectueuses, matériel professionnel et garanties sur nos interventions pour la santé durable de vos arbres.",
+            "icon": "star"
+          }
+        ]
+      }
+    },
+    "services": {
+      "section": {
+        "title": "Nos prestations",
+        "main_title": "Spécialistes de l'arboriculture dans le Tarn",
+        "description": "ADT Habitat vous accompagne dans tous vos projets d'entretien et d'aménagement paysager. Notre équipe qualifiée met son expertise au service de vos arbres et espaces verts."
+      },
+      "items": [
+        {
+          "title": "Élagage & Etêtage",
+          "description": "Taille professionnelle adaptée à chaque essence, élagage sur corde et étêtage en toute sécurité",
+          "image": "/elagage/carré/elagage-sur-corde-three.png",
+          "anchor": "#elagage"
+        },
+        {
+          "title": "Abattage", 
+          "description": "Démontage d'arbres dangereux, abattage technique et évacuation complète des déchets",
+          "image": "/elagage/carré/abattage-five.png",
+          "anchor": "#abattage"
+        },
+        {
+          "title": "Taille d'arbres et de haie",
+          "description": "Taille respectueuse de la physiologie végétale, formation et entretien de haies",
+          "image": "/elagage/carré/taille-fruitier-one.png",
+          "anchor": "#taille-haies"
+        },
+        {
+          "title": "Dessouchage et rognage",
+          "description": "Extraction de souches par rognage mécanique, remise en état du terrain",
+          "image": "/elagage/carré/dessouchage-two.png",
+          "anchor": "#dessouchage"
+        },
+        {
+          "title": "Entretien de parc et jardin",
+          "description": "Maintenance complète d'espaces verts, débroussaillage et soins des végétaux",
+          "image": "/elagage/carré/entretien-jardin-four.png",
+          "anchor": "#entretien-jardins"
+        },
+        {
+          "title": "Installation de clôtures", 
+          "description": "Pose et rénovation de clôtures tous matériaux, délimitation de propriétés",
+          "image": "/elagage/carré/pose-cloture-three.png",
+          "anchor": "#cloture"
+        },
+        {
+          "title": "Création de pelouses",
+          "description": "Aménagement paysager, engazonnement naturel et installation de gazon synthétique",
+          "image": "/elagage/carré/pose-gazon-five.png",
+          "anchor": "#gazon"
+        },
+        {
+          "title": "Nettoyage d'espaces extérieurs",
+          "description": "Remise en état de jardins, nettoyage haute pression et entretien de terrasses",
+          "image": "/elagage/carré/nettoyage-ext-two.png",
+          "anchor": "#nettoyage-exterieur"
+        },
+        {
+          "title": "Peinture de façades",
+          "description": "Rénovation et protection de façades, peinture extérieure avec matériel adapté",
+          "image": "https://images.fullstage.fr/activites/fa%C3%A7ade/peinture-ext%C3%A9rieur.jpg",
+          "anchor": "#peinture-exterieure"
+        },
+        {
+          "title": "Entretien de toitures",
+          "description": "Démoussage, nettoyage et traitement préventif pour la protection de vos toitures",
+          "image": "https://images.fullstage.fr/activites/couvreur/nettoyage-de-toiture-1.jpg",
+          "anchor": "#nettoyage-toiture"
+        },
+        {
+          "title": "Rénovation de façades",
+          "description": "Ravalement complet, réparation et embellissement de façades avec équipement spécialisé",
+          "image": "https://images.fullstage.fr/activites/fa%C3%A7ade/ravalement-de-fa%C3%A7ade.jpg",
+          "anchor": "#ravalement-facade"
+        }
+      ]
+    },
+    "how_it_works": {
+      "section": {
+        "title": "Notre méthode",
+        "main_title": "Un processus rigoureux en 5 étapes"
+      },
+      "steps": [
+        {
+          "number": "01",
+          "title": "Prise de contact",
+          "description": "Contactez-nous par téléphone ou par mail pour discuter de votre projet : élagage, abattage, taille de haies ou entretien de jardin.",
+          "cta": "Obtenir un devis gratuit",
+          "image": "https://images.fullstage.fr/general/howitwork/devis-gratuit.jpg",
+          "badge": "Gratuit & sans engagement",
+          "icon": "phone"
+        },
+        {
+          "number": "02", 
+          "title": "Rendez-vous technique & diagnostic arboricole",
+          "description": "Un expert Ets Jean Habitat se rend sur place pour inspecter vos arbres, évaluer leur état de santé et identifier les spécificités de l'intervention.",
+          "image": "/elagage/carré/etetage-four.png",
+          "icon": "calculator"
+        },
+        {
+          "number": "03",
+          "title": "Validation du devis",
+          "description": "Nous vous transmettons un devis clair et détaillé, adapté à la nature de vos travaux d'élagage ou d'entretien.",
+          "image": "/elagage/carré/taille-ornement-one.png",
+          "icon": "document"
+        },
+        {
+          "number": "04",
+          "title": "Réalisation des travaux", 
+          "description": "Notre équipe intervient dans les délais convenus. Sécurisation du site, préparation du matériel spécialisé et réalisation des travaux d'élagage dans les règles de l'art pour un résultat durable.",
+          "image": "/elagage/carré/etetage-five.png",
+          "icon": "hammer"
+        },
+        {
+          "number": "05",
+          "title": "Profitez",
+          "description": "À la livraison du chantier, nous réalisons une vérification complète pour nous assurer que chaque détail est conforme à vos attentes. Les lieux sont soigneusement nettoyés, et vos arbres comme vos espaces verts sont prêts à l'usage.",
+          "image": "/elagage/carré/entretien-jardin-six.png",
+          "icon": "star"
+        }
+      ]
+    },
+    "faq": {
+      "section": {
+        "title": "Questions fréquentes",
+        "main_title": "Tout ce que vous devez savoir",
+        "description": "Retrouvez les réponses aux questions les plus courantes sur nos services d'élagage, abattage et entretien d'espaces verts."
+      },
+      "items": [
+        {
+          "question": "Dans quelles villes de l'Aveyron intervenez-vous ?",
+          "answer": "Nous intervenons dans tout l'Aveyron depuis notre base à Boisse Penchot : Rodez, Millau, Villefranche-de-Rouergue, Decazeville, Saint-Affrique, Espalion et toutes les communes environnantes. Nos 15 ans d'expérience locale nous permettent de connaître parfaitement les essences d'arbres de notre région."
+        },
+        {
+          "question": "Combien coûte un élagage d'arbre en Aveyron ?",
+          "answer": "Le prix varie selon la taille de l'arbre, son accès et la complexité : comptez 150-400€ pour un petit arbre, 400-800€ pour un arbre moyen, et 800-1500€ pour un grand arbre. Chaque devis est personnalisé et gratuit. Nous proposons des tarifs compétitifs adaptés au marché aveyronnais."
+        },
+        {
+          "question": "À quelle période faut-il élaguer ses arbres ?",
+          "answer": "En Aveyron, la meilleure période est l'automne-hiver (novembre à mars) quand les arbres sont en repos végétatif. Cela évite le stress et favorise une belle repousse au printemps. Pour les urgences, nous intervenons toute l'année avec des techniques adaptées à chaque saison."
+        },
+        {
+          "question": "Faut-il une autorisation pour abattre un arbre en Aveyron ?",
+          "answer": "Cela dépend de votre commune. À Rodez par exemple, une déclaration est nécessaire pour les arbres de plus de 2m de haut. Nous connaissons les règlements de toutes les mairies aveyronnaises et nous occupons gratuitement de vos démarches administratives."
+        },
+        {
+          "question": "Que faites-vous des déchets verts après élagage ?",
+          "answer": "Nous proposons plusieurs options : évacuation complète vers une déchèterie agréée, broyage sur place pour faire du paillis naturel pour vos massifs, ou débit en bois de chauffage si les dimensions le permettent. Le choix vous appartient et nous adaptons nos tarifs en conséquence."
+        },
+        {
+          "question": "Intervenez-vous par temps de mistral ou de forte pluie ?",
+          "answer": "Pour votre sécurité et la nôtre, nous reportons les interventions par vent fort (> 40 km/h) ou pluie intense. En revanche, nous proposons un service d'urgence 24h/24 pour sécuriser les arbres dangereux après les tempêtes fréquentes en Aveyron. Appelez-nous au 07.49.61.31.35."
+        }
+      ]
+    },
+    "partner_logos": [
+      {
+        "name": "Husqvarna",
+        "img_url": "https://images.fullstage.fr/general/partners/elagage/husqvarna.webp",
+        "alt": "Husqvarna - Équipement professionnel d'élagage"
+      },
+      {
+        "name": "PDB - La Plateforme du Bâtiment",
+        "img_url": "https://images.fullstage.fr/general/partners/elagage/PDB.svg",
+        "alt": "PDB - La Plateforme du Bâtiment"
+      },
+      {
+        "name": "Stihl",
+        "img_url": "https://images.fullstage.fr/general/partners/elagage/stihl-logo.svg",
+        "alt": "Stihl - Outils professionnels d'élagage"
+      }
+    ],
+    "thank_you_page": {
+      "hero_image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=675&q=80",
+      "title": "Étude en cours",
+      "messages": [
+        "Nous allons étudier votre demande dans les plus brefs délais, nous vous recontacterons très prochainement.",
+        "Nous vous remercions pour votre confiance et nous sommes ravis de pouvoir vous guider dans votre problématique grâce à notre expertise.",
+        "À très vite !"
+      ],
+      "urgent_text": "Vous souhaitez aller plus vite ?",
+      "urgent_description": "Contactez-nous directement par téléphone si nous sommes ouvert !",
+      "cta_phone": {
+        "text": "Numéro de tel",
+        "variant": "primary"
+      },
+      "cta_home": {
+        "text": "Retour accueil", 
+        "variant": "outline"
+      }
+    },
+    "footer": {
+      "description": "Expert en élagage, abattage et entretien d'espaces verts en Aveyron. Depuis 15 ans, nous garantissons des services de qualité pour l'entretien de vos arbres durablement.",
+      "sections": {
+        "navigation": {
+          "title": "Navigation",
+          "links": [
+            { "text": "À propos", "url": "#about" },
+            { "text": "Témoignages", "url": "#testimonials" },
+            { "text": "Comment ça marche ?", "url": "#process" },
+            { "text": "FAQ", "url": "#faq" },
+            { "text": "Contact", "url": "#contact" }
+          ]
+        },
+        "services": {
+          "title": "Nos Services",
+          "links": [
+            { "text": "Élagage", "url": "#elagage" },
+            { "text": "Abattage", "url": "#abattage" },
+            { "text": "Taille de haies", "url": "#taille-haies" },
+            { "text": "Clôture", "url": "#cloture" },
+            { "text": "Urgence", "url": "#urgence" }
+          ]
+        },
+        "legal": {
+          "title": "Légal",
+          "links": [
+            { "text": "Mentions légales", "url": "/legal" },
+            { "text": "Politique de confidentialité", "url": "/legal" },
+            { "text": "CGV", "url": "/legal" }
+          ]
+        }
+      }
+    }
+  }
+}

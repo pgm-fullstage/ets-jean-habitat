@@ -1,0 +1,62 @@
+---
+import Button from './Button.astro';
+
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for InfosSticky component');
+}
+
+const { business } = siteData;
+---
+
+<div class="p-6 text-title bg-white rounded-xl shadow-lg max-w-sm">
+  
+  <!-- Titre -->
+  <h3 class="text-xl font-semibold text-title mb-4">Contactez-nous</h3>
+  <p class="text-sm text-text mb-6">Nous répondrons à toutes vos questions.</p>
+  
+  <!-- Informations de contact -->
+  <div class="space-y-4 mb-6">
+      <!-- Adresse -->
+    <div class="flex items-center">
+      <div class="w-5 h-5 mr-3 flex-shrink-0">
+        <svg class="w-full h-full text-primary" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+      <span class="text-lg text-text">
+        Zone d'intervention : 50 km autour de {business.city}
+      </span>
+    </div>
+
+    <div class="grid">
+        <Button
+
+    variant='primary'
+    size="md"
+    icon="phone"
+    href=`tel:${business.contact.phone_formatted}`
+    >{business.contact.phone_formatted}</Button>
+    </div>
+  
+
+  
+
+  <!-- CTA Button -->
+  <div>
+    <Button 
+      variant="outline" 
+      size="md"
+      modal
+      class="w-full text-center hover:!text-white"
+      {...({ command: "hide-modal", commandfor: Astro.props.dialogId || "dialog" })}
+      icon="arrow_right"
+      iconPosition='right'
+    >
+      DEVIS EN LIGNE
+   
+    </Button>
+  </div>
+    </div>
+</div>

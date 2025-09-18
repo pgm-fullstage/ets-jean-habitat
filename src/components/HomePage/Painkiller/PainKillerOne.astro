@@ -1,0 +1,109 @@
+---
+import Button from "../../Button.astro";
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for PainKiller component');
+}
+
+const { business, ui_sections } = siteData;
+const { theme, painkiller } = ui_sections;
+
+// Fonction pour obtenir les icônes SVG simples
+const getIcon = (iconType, iconName) => {
+  // Icônes de problème (cancel/X)
+  const problemIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
+  
+  // Icônes de solution (check/validation)
+  const solutionIcon = ` <path d="M18.7088 3.49534C16.8165 2.55382 14.5009 2 12 2C9.4991 2 7.1835 2.55382 5.29116 3.49534C4.36318 3.95706 3.89919 4.18792 3.4496 4.91378C3 5.63965 3 6.34248 3 7.74814V11.2371C3 16.9205 7.54236 20.0804 10.173 21.4338C10.9067 21.8113 11.2735 22 12 22C12.7265 22 13.0933 21.8113 13.8269 21.4338C16.4576 20.0804 21 16.9205 21 11.2371L21 7.74814C21 6.34249 21 5.63966 20.5504 4.91378C20.1008 4.18791 19.6368 3.95706 18.7088 3.49534Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> <path d="M9 11.5C9 11.5 10.4079 11.7519 11 13.5C11 13.5 12.5 10.5 15 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />`;
+  
+  return iconType === 'problem' ? problemIcon : solutionIcon;
+}
+
+// Format de la description des solutions avec les données business
+const solutionsDescription = painkiller.solutions.description_template
+  .replace('{reviews}', business.google_rating.total_reviews)
+  .replace('{rating}', business.google_rating.average_rating)
+---
+
+
+
+<div class="overflow-hidden bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+      <div class="lg:pt-4 lg:pr-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base/7 font-semibold text-primary">{painkiller.problems.title}</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-title sm:text-5xl">{painkiller.problems.main_title}</p>
+          <p class="mt-6 text-lg/8 text-content">{painkiller.problems.description}</p>
+          <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-content lg:max-w-none">
+            {painkiller.problems.items.map((item) => (
+              <div class="relative pl-9">
+                <dt class="inline font-semibold ">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="absolute top-1 left-1 size-5 text-red-500" set:html={getIcon('problem', item.icon)} fill="none">
+                  </svg>
+                  {item.title}
+                </dt>
+                <dd class="inline">{item.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+      <img width="2432" height="1442" src={painkiller.problems.image_url} alt={painkiller.problems.image_alt} class="aspect-square w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 object-cover md:-ml-4 lg:-ml-0" />
+    </div>
+  </div>
+</div>
+
+<div class="overflow-hidden bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+      <div class="lg:ml-auto lg:pt-4 lg:pl-4">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base/7 font-semibold text-primary">{painkiller.solutions.title}</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-title sm:text-5xl">{painkiller.solutions.main_title}</p>
+          <p class="mt-6 text-lg/8 text-content">{solutionsDescription}</p>
+          <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-content lg:max-w-none">
+            {painkiller.solutions.items.map((item) => (
+              <div class="relative pl-9">
+                <dt class="inline font-semibold text-title">
+                  <svg viewBox="0 0 24 24" color="currentColor" class="absolute top-1 left-1 size-5 text-green-700" set:html={getIcon(item.icon)} fill="none">
+                  </svg>
+                  {item.title}
+                </dt>
+                <dd class="inline">{item.description}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <Button 
+              modal
+              siteData={siteData}
+              variant="primary"
+              size="lg"
+              radius="lg"
+              icon="devis"
+              iconPosition="left"
+            >
+              Demander un devis
+            </Button>
+              <Button 
+              href=`tel:${business.contact.phone}`
+              siteData={siteData}
+              variant="variant"
+              size="lg"
+              radius="lg"
+              icon="phone"
+              iconPosition="left"
+            >
+              {business.contact.phone_formatted}
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-start justify-end lg:order-first">
+        <img src={painkiller.solutions.image_url} alt={painkiller.solutions.image_alt} class="aspect-square w-full object-cover max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10" />
+      </div>
+    </div>
+  </div>
+</div>

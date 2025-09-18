@@ -1,0 +1,55 @@
+---
+const siteData = Astro.props.siteData || (typeof window !== 'undefined' ? window.siteData : null);
+
+if (!siteData) {
+  throw new Error('siteData is required for FAQ component');
+}
+
+const { business, ui_sections } = siteData;
+const { theme, faq } = ui_sections;
+
+// Fonction pour générer un ID unique pour chaque FAQ
+const generateId = (index) => `faq-${index}`;
+---
+
+<div class=" relative z-10">
+  <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="text-base/7 font-semibold animate-on-scroll fade-in-up" style={`color: ${theme.primary}`}>
+        {faq.section.title}
+      </h2>
+      <h3 class="text-4xl font-semibold tracking-tight sm:text-5xl animate-on-scroll fade-in-up" style={`color: ${theme.title}`} data-delay="100">
+        {faq.section.main_title}
+      </h3>
+      <dl class="mt-16 divide-y divide-gray-900/10 animate-on-scroll fade-in-bottom" data-delay="200">
+        {faq.items.map((item, index) => (
+          <div class="py-6 first:pt-0 last:pb-0">
+            <dt>
+              <button 
+                type="button" 
+                command="--toggle" 
+                commandfor={generateId(index)} 
+                class="flex w-full items-start justify-between text-left text-gray-900"
+              >
+                <span class="text-base/7 font-semibold">{item.question}</span>
+                <span class="ml-6 flex h-7 items-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+                    <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+                    <path d="M18 12H6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </button>
+            </dt>
+            <el-disclosure id={generateId(index)} hidden class="contents">
+              <dd class="mt-2 pr-12">
+                <p class="text-base/7 text-gray-600">{item.answer}</p>
+              </dd>
+            </el-disclosure>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</div>

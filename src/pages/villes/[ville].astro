@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePageContent from '../../layouts/HomePageContent.astro';
+
+
+// Fetch configuration depuis Workers KV (même logique que Layout)
+const CONFIG_URL = import.meta.env.PUBLIC_CONFIG_URL || '/ets-jean-habitat-content.json';
+
+async function getSiteConfig() {
+  try {
+    const response = await fetch(CONFIG_URL, {
+      headers: {
+        'Cache-Control': 'max-age=300'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const contentType = response.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      throw new Error('Invalid response format');
+    }
+    
+    return await response.json();
+  } catch (error) {
+    // Fallback vers config par défaut
+    return {
+      business: { name: "Site en Maintenance" },
+      ui_sections: { theme: { primary: "#3B82F6" }, painkiller: {} }
+    };
+  }
+}
+
+const siteData = await getSiteConfig();
+
+// Récupérer la ville depuis les paramètres d'URL
+const { ville } = Astro.params;
+
+// Vérifier si la ville existe
+const availableCities = siteData.cities?.available || {};
+if (!availableCities[ville]) {
+  return Astro.redirect('/404');
+}
+
+// Modifier siteData pour utiliser la ville spécifique
+const citySpecificData = {
+  ...siteData,
+  cities: {
+    ...siteData.cities,
+    default: ville // Override le default avec la ville courante
+  }
+};
+
+// Récupérer les données de la ville pour le SEO
+const cityData = availableCities[ville];
+---
+
+<Layout 
+  siteData={citySpecificData}
+  title={cityData.hero_title}
+  description={cityData.meta_description || cityData.hero_description}
+>
+    <HomePageContent siteData={citySpecificData} />
+</Layout>

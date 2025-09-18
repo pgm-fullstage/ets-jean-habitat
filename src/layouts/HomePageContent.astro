@@ -1,0 +1,40 @@
+---
+import ContactForm from '../components/HomePage/Contact/ContactOne.astro';
+import HeroOne from '../components/HomePage/Heros/HeroTwo.astro';
+import AboutUs from '../components/HomePage/About/AboutUsOne.astro';
+import FAQ from '../components/HomePage/FAQ.astro';
+import HowItWorks from "../components/HomePage/HowItWorks/HowItWorksTwo.astro"
+import PainKiller from "../components/HomePage/Painkiller/PainKillerOne.astro"
+import TestimonialsTwo from '../components/HomePage/Testimonials/TestimonialsTwo.astro';
+import ServiceOne from '../components/HomePage/Services/ServiceOne.astro';
+import RealizationsOne from '../components/HomePage/Realizations/RealizationsOne.astro';
+import WhyChooseUsOne from '../components/HomePage/WhyChooseUs/WhyChooseUsOne.astro';
+import NacelleCTA from '../components/HomePage/CTA/NacelleCTA.astro';
+
+interface Props {
+  siteData: any;
+}
+
+const { siteData } = Astro.props;
+---
+
+<HeroOne siteData={siteData}/>
+<WhyChooseUsOne siteData={siteData} />
+<ServiceOne siteData={siteData} />
+<PainKiller siteData={siteData} />
+<section id="about">
+    <AboutUs siteData={siteData}/>
+</section>
+
+<NacelleCTA siteData={siteData} />
+
+<section id="testimonials">
+    <TestimonialsTwo siteData={siteData} />
+</section>
+<section id="process">
+    <HowItWorks siteData={siteData} />
+</section>
+<FAQ siteData={siteData}/>    
+<section id="contact">
+    <ContactForm siteData={siteData}/>
+</section>
