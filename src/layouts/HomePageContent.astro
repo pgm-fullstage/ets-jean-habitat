@@ -5,7 +5,6 @@ import AboutUs from '../components/HomePage/About/AboutUsOne.astro';
 import FAQ from '../components/HomePage/FAQ.astro';
 import HowItWorks from "../components/HomePage/HowItWorks/HowItWorksTwo.astro"
 import PainKiller from "../components/HomePage/Painkiller/PainKillerOne.astro"
-import TestimonialsTwo from '../components/HomePage/Testimonials/TestimonialsTwo.astro';
 import ServiceOne from '../components/HomePage/Services/ServiceOne.astro';
 import RealizationsOne from '../components/HomePage/Realizations/RealizationsOne.astro';
 import WhyChooseUsOne from '../components/HomePage/WhyChooseUs/WhyChooseUsOne.astro';
@@ -28,9 +27,6 @@ const { siteData } = Astro.props;
 
 <NacelleCTA siteData={siteData} />
 
-<section id="testimonials">
-    <TestimonialsTwo siteData={siteData} />
-</section>
 <section id="process">
     <HowItWorks siteData={siteData} />
 </section>

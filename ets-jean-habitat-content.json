@@ -232,7 +232,7 @@
       "title": "Élagage Professionnel en Aveyron",
       "subtitle": "Votre Partenaire Arboricole",
       "description": "Ets Jean Habitat, votre spécialiste élagage en Aveyron. Intervention de qualité pour l'entretien et la sécurité de vos arbres et espaces verts.",
-      "video": "https://images.fullstage.fr/videos/elagueur/arboriste-one.mp4",
+      "video": "https://images.fullstage.fr/videos/elagueur/tronconneuse-two.mp4",
       "images": [
         "https://images.fullstage.fr/clients/hj_habitat/photo_5.jpg",
         "https://images.fullstage.fr/clients/hj_habitat/photo_6.jpg",
@@ -303,7 +303,7 @@
         ],
         "links": [
           { "text": "À propos", "url": "#about" },
-          { "text": "Témoignages", "url": "#testimonials" },
+          { "text": "FAQ", "url": "#faq" },
           { "text": "Comment ça marche ?", "url": "#process" },
           { "text": "Contact", "url": "#contact" }
         ]
@@ -575,7 +575,7 @@
           "title": "Navigation",
           "links": [
             { "text": "À propos", "url": "#about" },
-            { "text": "Témoignages", "url": "#testimonials" },
+            { "text": "FAQ", "url": "#faq" },
             { "text": "Comment ça marche ?", "url": "#process" },
             { "text": "FAQ", "url": "#faq" },
             { "text": "Contact", "url": "#contact" }
