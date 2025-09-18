@@ -67,12 +67,12 @@
     "contact": {
       "phone": "+33749613135",
       "phone_formatted": "07.49.61.31.35",
-      "email": "contact@etsjeanhabitat.fr"
+      "email": "entreprise.ju12@gmail.com"
     },
     "google": {
-      "gmb_url": "https://maps.app.goo.gl/tT62pDb8Ogug1LoP6",
-      "review_url": "https://share.google/tT62pDb8Ogug1LoP6",
-      "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d730804.3866439824!2d2.64567665!3d44.31602225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x28c4fa2a014df98f%3A0x8b4354e04244df3c!2sEts%20Jean%20Habitat!5e0!3m2!1sen!2sfr!4v1758208343720!5m2!1sen!2sfr"
+      "gmb_url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x6be1ed4de7e2e253:0x81df2aa6bd548f49?source=g.page.m._",
+      "review_url": "https://g.page/r/CUmPVL2mKt-BEAE/review",
+      "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11373.036946726522!2d2.2320425!3d43.6046938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ae888c2a7a7d07%3A0xf2a3b1a3c1a3b1a3!2sCastres!5e0!3m2!1sfr!2sfr!4v1703073600000!5m2!1sfr!2sfr"
     },
     "domain": "etsjeanhabitat.fr",
     "google_rating": {
@@ -206,10 +206,10 @@
         ]
       },
       "images": [
-        "/elagage/carré/elagage-sur-corde-one.png",
-        "/elagage/carré/etetage-two.png",
-        "/elagage/carré/dessouchage-one.png",
-        "/elagage/carré/taille-arbre-three.png"
+        "/elagage/carré/elagage-sur-corde-three.png",
+        "/elagage/carré/etetage-one.png",
+        "/elagage/carré/dessouchage-five.png",
+        "/elagage/carré/taille-arbre-two.png"
       ],
       "partners_title": "Nos partenaires"
     },
@@ -217,7 +217,7 @@
       "section_title": "Matériel de pointe",
       "main_title": "Équipement moderne pour l'élagage en toute sécurité",
       "description": "Ets Jean Habitat investit dans du matériel professionnel de dernière génération pour garantir la qualité et la sécurité de nos interventions. Nacelle élévatrice, tronçonneuses performantes, matériel de grimpe certifié : nous disposons de tous les outils nécessaires pour mener à bien vos projets d'élagage.",
-      "image": "/elagage/carré/nacelle-one.png",
+      "image": "/elagage/carré/elagage-sur-corde-four.png",
       "image_alt": "Équipement professionnel Ets Jean Habitat pour travaux d'élagage",
       "cta_primary": {
         "text": "Demander un devis",
@@ -232,7 +232,7 @@
       "title": "Élagage Professionnel en Aveyron",
       "subtitle": "Votre Partenaire Arboricole",
       "description": "Ets Jean Habitat, votre spécialiste élagage en Aveyron. Intervention de qualité pour l'entretien et la sécurité de vos arbres et espaces verts.",
-      "video": "https://images.fullstage.fr/videos/elagueur/tronconneuse-two.mp4",
+      "video": "https://images.fullstage.fr/videos/elagueur/arboriste-one.mp4",
       "images": [
         "https://images.fullstage.fr/clients/hj_habitat/photo_5.jpg",
         "https://images.fullstage.fr/clients/hj_habitat/photo_6.jpg",
@@ -248,69 +248,69 @@
             "title": "Élagage d'arbres",
             "description": "Taille et élagage professionnels pour la santé et la sécurité de vos arbres",
             "icon": "tree",
-            "image": "/elagage/carré/elagage-sur-corde-two.png",
+            "image": "/elagage/carré/elagage-sur-corde-five.png",
             "anchor": "#elagage"
           },
           {
             "title": "Abattage d'arbres", 
             "description": "Abattage sécurisé et démontage d'arbres dangereux ou gênants",
             "icon": "cut",
-            "image": "/elagage/carré/abattage-one.png",
+            "image": "/elagage/carré/abattage-four.png",
             "anchor": "#abattage"
           },
           {
             "title": "Taille de haies",
             "description": "Taille et entretien de haies pour un jardin soigné et structuré",
             "icon": "hedge",
-            "image": "/elagage/carré/taille-haie-one.png",
+            "image": "/elagage/carré/taille-arbre-one.png",
             "anchor": "#taille-haies"
           },
           {
             "title": "Entretien d'espaces verts",
             "description": "Entretien complet de jardins et espaces verts pour un environnement harmonieux",
             "icon": "garden",
-            "image": "/elagage/carré/entretien-jardin-one.png",
+            "image": "/elagage/carré/entretien-jardin-two.png",
             "anchor": "#entretien-jardins"
           },
           {
             "title": "Pose de clôture",
             "description": "Installation et rénovation de clôtures en aluminium, PVC et grillage",
             "icon": "fence",
-            "image": "/elagage/carré/pose-cloture-two.png",
+            "image": "/elagage/carré/pose-cloture-five.png",
             "anchor": "#cloture"
           },
           {
             "title": "Dessouchage", 
             "description": "Extraction de souches et nettoyage du terrain pour vos nouveaux projets",
             "icon": "stump",
-            "image": "/elagage/carré/dessouchage-four.png",
+            "image": "/elagage/carré/dessouchage-three.png",
             "anchor": "#dessouchage"
           },
           {
             "title": "Pose de gazon",
             "description": "Installation de pelouse synthétique et naturelle pour vos espaces verts",
             "icon": "grass",
-            "image": "/elagage/carré/pose-gazon-two.png",
+            "image": "/elagage/carré/pose-gazon-three.png",
             "anchor": "#gazon"
           },
           {
             "title": "Intervention d'urgence",
             "description": "Intervention rapide 24h/24 et 7j/7 pour arbres dangereux ou tombés",
             "icon": "emergency",
-            "image": "/elagage/carré/nettoyage-ext-three.png",
+            "image": "/elagage/carré/nettoyage-ext-four.png",
             "anchor": "#urgence"
           }
         ],
         "links": [
           { "text": "À propos", "url": "#about" },
-          { "text": "FAQ", "url": "#faq" },
+          { "text": "Témoignages", "url": "#testimonials" },
           { "text": "Comment ça marche ?", "url": "#process" },
           { "text": "Contact", "url": "#contact" }
         ]
       }
     },
     "theme": {
-      "primary": "#F59E0B",
+      "primary": "#EA580C",
       "title": "#1A1A1A",
       "text": "#666666",
       "input": "#8C8C8C",
@@ -319,14 +319,14 @@
     },
     "typography": {
       "headings": {
-        "family": "Manrope",
+        "family": "Lato",
         "weights": [400, 500, 600, 700],
-        "google_font_url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+        "google_font_url": "https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap"
       },
       "body": {
-        "family": "Manrope",
+        "family": "Inter",
         "weights": [300, 400, 500],
-        "google_font_url": "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap"
+        "google_font_url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
       }
     },
     "painkiller": {
@@ -334,7 +334,7 @@
         "title": "Vos problématiques",
         "main_title": "Des soucis avec vos arbres ?",
         "description": "Vos arbres, haies ou espaces verts vous posent problème ? Nous identifions vos difficultés et vous apportons des solutions durables et respectueuses de l'environnement.",
-        "image_url": "/elagage/carré/abattage-two.png",
+        "image_url": "/elagage/carré/abattage-three.png",
         "image_alt": "Jardin avec arbres à élaguer",
         "items": [
           {
@@ -358,7 +358,7 @@
         "title": "Nos solutions",
         "main_title": "Ets Jean Habitat à vos côtés",
         "description_template": "Fort de notre expertise et de nos {reviews} avis clients ({rating}/5), nous vous proposons des solutions complètes et respectueuses de l'environnement.",
-        "image_url": "/elagage/carré/elagage-sur-corde-four.png",
+        "image_url": "/elagage/carré/elagage-sur-corde-two.png",
         "image_alt": "Équipe Ets Jean Habitat au travail",
         "items": [
           {
@@ -389,49 +389,49 @@
         {
           "title": "Élagage & Etêtage",
           "description": "Taille professionnelle adaptée à chaque essence, élagage sur corde et étêtage en toute sécurité",
-          "image": "/elagage/carré/elagage-sur-corde-three.png",
+          "image": "/elagage/carré/elagage-sur-corde-five.png",
           "anchor": "#elagage"
         },
         {
           "title": "Abattage", 
           "description": "Démontage d'arbres dangereux, abattage technique et évacuation complète des déchets",
-          "image": "/elagage/carré/abattage-five.png",
+          "image": "/elagage/carré/abattage-four.png",
           "anchor": "#abattage"
         },
         {
           "title": "Taille d'arbres et de haie",
           "description": "Taille respectueuse de la physiologie végétale, formation et entretien de haies",
-          "image": "/elagage/carré/taille-fruitier-one.png",
+          "image": "/elagage/carré/taille-arbre-one.png",
           "anchor": "#taille-haies"
         },
         {
           "title": "Dessouchage et rognage",
           "description": "Extraction de souches par rognage mécanique, remise en état du terrain",
-          "image": "/elagage/carré/dessouchage-two.png",
+          "image": "/elagage/carré/dessouchage-three.png",
           "anchor": "#dessouchage"
         },
         {
           "title": "Entretien de parc et jardin",
           "description": "Maintenance complète d'espaces verts, débroussaillage et soins des végétaux",
-          "image": "/elagage/carré/entretien-jardin-four.png",
+          "image": "/elagage/carré/entretien-jardin-two.png",
           "anchor": "#entretien-jardins"
         },
         {
           "title": "Installation de clôtures", 
           "description": "Pose et rénovation de clôtures tous matériaux, délimitation de propriétés",
-          "image": "/elagage/carré/pose-cloture-three.png",
+          "image": "/elagage/carré/pose-cloture-five.png",
           "anchor": "#cloture"
         },
         {
           "title": "Création de pelouses",
           "description": "Aménagement paysager, engazonnement naturel et installation de gazon synthétique",
-          "image": "/elagage/carré/pose-gazon-five.png",
+          "image": "/elagage/carré/pose-gazon-three.png",
           "anchor": "#gazon"
         },
         {
           "title": "Nettoyage d'espaces extérieurs",
           "description": "Remise en état de jardins, nettoyage haute pression et entretien de terrasses",
-          "image": "/elagage/carré/nettoyage-ext-two.png",
+          "image": "/elagage/carré/nettoyage-ext-four.png",
           "anchor": "#nettoyage-exterieur"
         },
         {
@@ -507,28 +507,28 @@
       },
       "items": [
         {
-          "question": "Dans quelles villes de l'Aveyron intervenez-vous ?",
-          "answer": "Nous intervenons dans tout l'Aveyron depuis notre base à Boisse Penchot : Rodez, Millau, Villefranche-de-Rouergue, Decazeville, Saint-Affrique, Espalion et toutes les communes environnantes. Nos 15 ans d'expérience locale nous permettent de connaître parfaitement les essences d'arbres de notre région."
+          "question": "Quels types de services d'élagage proposez-vous ?",
+          "answer": "Nous proposons une gamme complète de services : élagage et etêtage, abattage dangereux, taille d'arbres et de haies, dessouchage et rognage, entretien de parcs et jardins, pose de clôture, pose de gazon et nettoyage extérieur. Nous nous adaptons à tous types d'arbres et à votre budget."
         },
         {
-          "question": "Combien coûte un élagage d'arbre en Aveyron ?",
-          "answer": "Le prix varie selon la taille de l'arbre, son accès et la complexité : comptez 150-400€ pour un petit arbre, 400-800€ pour un arbre moyen, et 800-1500€ pour un grand arbre. Chaque devis est personnalisé et gratuit. Nous proposons des tarifs compétitifs adaptés au marché aveyronnais."
+          "question": "Combien de temps durent vos interventions d'élagage ?",
+          "answer": "La durée dépend de la complexité du projet. Pour une taille simple : quelques heures. Pour un élagage complet ou un abattage : 1-2 jours. Nous vous fournissons un planning détaillé avant le début des travaux et respectons scrupuleusement les délais convenus."
         },
         {
-          "question": "À quelle période faut-il élaguer ses arbres ?",
-          "answer": "En Aveyron, la meilleure période est l'automne-hiver (novembre à mars) quand les arbres sont en repos végétatif. Cela évite le stress et favorise une belle repousse au printemps. Pour les urgences, nous intervenons toute l'année avec des techniques adaptées à chaque saison."
+          "question": "Quelles garanties offrez-vous sur vos travaux ?",
+          "answer": "Nous offrons une garantie décennale sur tous nos travaux d'élagage et d'abattage. Pour les autres prestations (taille, entretien), nous proposons une garantie de 2 ans. Nous utilisons uniquement des techniques professionnelles et du matériel certifié pour garantir la sécurité et la durée de nos interventions."
         },
         {
-          "question": "Faut-il une autorisation pour abattre un arbre en Aveyron ?",
-          "answer": "Cela dépend de votre commune. À Rodez par exemple, une déclaration est nécessaire pour les arbres de plus de 2m de haut. Nous connaissons les règlements de toutes les mairies aveyronnaises et nous occupons gratuitement de vos démarches administratives."
+          "question": "Intervenez-vous en urgence ?",
+          "answer": "Oui, nous proposons un service d'urgence 24h/24 et 7j/7 pour les arbres dangereux (branches cassées, arbres penchés, etc.). Notre équipe peut intervenir dans l'heure pour sécuriser votre propriété et limiter les risques en attendant l'intervention définitive."
         },
         {
-          "question": "Que faites-vous des déchets verts après élagage ?",
-          "answer": "Nous proposons plusieurs options : évacuation complète vers une déchèterie agréée, broyage sur place pour faire du paillis naturel pour vos massifs, ou débit en bois de chauffage si les dimensions le permettent. Le choix vous appartient et nous adaptons nos tarifs en conséquence."
+          "question": "Comment se déroule le processus de A à Z ?",
+          "answer": "1) Vous nous contactez via le formulaire ou par téléphone. 2) Nous planifions une visite gratuite sous 48h. 3) Nous réalisons un diagnostic complet et vous remettons un devis détaillé. 4) Si vous acceptez, nous planifons les travaux selon vos disponibilités. 5) Réalisation des travaux avec suivi quotidien. 6) Réception des travaux et nettoyage des lieux."
         },
         {
-          "question": "Intervenez-vous par temps de mistral ou de forte pluie ?",
-          "answer": "Pour votre sécurité et la nôtre, nous reportons les interventions par vent fort (> 40 km/h) ou pluie intense. En revanche, nous proposons un service d'urgence 24h/24 pour sécuriser les arbres dangereux après les tempêtes fréquentes en Aveyron. Appelez-nous au 07.49.61.31.35."
+          "question": "Aidez-vous pour les démarches administratives ?",
+          "answer": "Absolument ! Nous vous accompagnons dans toutes vos démarches, notamment pour les déclarations en mairie pour l'abattage d'arbres ou les demandes d'autorisation. Notre expérience facilite grandement ces processus administratifs souvent complexes."
         }
       ]
     },
@@ -569,14 +569,15 @@
       }
     },
     "footer": {
-      "description": "Expert en élagage, abattage et entretien d'espaces verts en Aveyron. Depuis 15 ans, nous garantissons des services de qualité pour l'entretien de vos arbres durablement.",
+      "description": "Expert en élagage, abattage et entretien d'espaces verts dans le Tarn. Nous garantissons des services de qualité pour l'entretien de vos arbres durablement.",
       "sections": {
         "navigation": {
           "title": "Navigation",
           "links": [
             { "text": "À propos", "url": "#about" },
-            { "text": "FAQ", "url": "#faq" },
+            { "text": "Témoignages", "url": "#testimonials" },
             { "text": "Comment ça marche ?", "url": "#process" },
+            { "text": "FAQ", "url": "#faq" },
             { "text": "Contact", "url": "#contact" }
           ]
         },
