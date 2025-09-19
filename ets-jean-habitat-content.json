@@ -303,8 +303,8 @@
         ],
         "links": [
           { "text": "À propos", "url": "#about" },
-          { "text": "FAQ", "url": "#faq" },
           { "text": "Comment ça marche ?", "url": "#process" },
+          { "text": "FAQ", "url": "#faq" },
           { "text": "Contact", "url": "#contact" }
         ]
       }
